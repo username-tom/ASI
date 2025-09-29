@@ -1,0 +1,83 @@
+Name
+Control command source
+Speed regulator mode
+
+Remote torque command
+Remote Speed Command in RPM
+Remote maximum braking current
+Remote maximum motoring current
+Remote state command
+Regeneration battery current limit
+Remote speed command
+controller status
+
+motor speed
+motor rpm
+motor temperature
+controller temperature
+Write parameters to flash
+user access level
+Parameter access code
+Parameter access code 1
+Parameter access code 2
+Parameter access code 3
+
+Fault clear
+faults
+faults2
+warnings
+warnings2
+
+Test mode
+Open loop current
+Open loop frequency
+Command timeout threshold
+Average Command timeout threshold
+
+Motor features
+
+software revision level
+
+Ia_rms
+Ic_rms
+
+Rated system voltage
+Rated motor current
+Rated motor speed
+# of motor pole pairs
+Gear ratio
+
+Rs
+Ls
+Motor position sensor type
+Hall offset
+
+Hall sector[0]
+Hall sector[1]
+Hall sector[2]
+Hall sector[3]
+Hall sector[4]
+Hall sector[5]
+Hall sector[6]
+Hall sector[7]
+
+Motor discover mode
+
+autotune Rs
+autotune Ls
+autotune rated rpm
+autotune hall offset angle
+autotune hall sector[0]
+autotune hall sector[1]
+autotune hall sector[2]
+autotune hall sector[3]
+autotune hall sector[4]
+autotune hall sector[5]
+autotune hall sector[6]
+autotune hall sector[7]
+
+phase A current
+phase B current
+phase C current
+motor current
+battery voltage
