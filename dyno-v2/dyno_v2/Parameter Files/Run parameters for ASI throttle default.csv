@@ -1,0 +1,93 @@
+Name
+CAN baud rate
+CAN Node ID
+Throttle Mode
+Calibrated Full Reverse
+Calibrated Neutral
+Calibrated Full Forward
+Calibrated Reverse Deadband Width
+Calibrated Neutral Deadband Width
+Calibrated Forward Deadband Width
+Calibrated Zero-Angle Raw Offset
+Absolute Calibration Feature Bits
+Calibrated Reverse Deadband Offset
+Calibrated Neutral Deadband Offset
+Calibrated Forward Deadband Offset
+
+OTP Block Lock Status
+OTP Parameter 1
+OTP Parameter 2
+OTP Parameter 3
+OTP Parameter 4
+OTP Parameter 5
+OTP Parameter 6
+OTP Parameter 7
+OTP Parameter 8
+OTP Parameter 9
+OTP Parameter 10
+
+Customer Custom Value 0
+Customer Custom Value 1
+Customer Custom Value 2
+Customer Custom Value 3
+Customer Custom Value 4
+Customer Custom Value 5
+Customer Custom Value 6
+Customer Custom Value 7
+Customer Custom Value 8
+Customer Custom Value 9
+
+Sensor 1 Temperature
+Sensor 2 Temperature
+Sensor 1 Error
+Sensor 2 Error
+Sensor 1 Raw Value
+Sensor 1 User Raw Value
+Sensor 2 Raw Value
+Sensor 2 User Raw Value
+Sensor 1 Device Angle
+Sensor 2 Device Angle
+Sensor 1 Extended Error
+Sensor 2 Extended Error
+Sensor 1 Watchdog Value
+Sensor 2 Watchdog Value
+Sensor 1 Status
+Sensor 2 Status
+
+PCB Voltage 3v3 Rail
+PCB Voltage 5v0 Rail
+PCB Voltage Input Voltage Rail
+PCB Temperature
+MCU Temperature
+MCU Voltage Battery
+Throttle Faults1
+Throttle Faults2
+Throttle Faults3
+Throttle Faults4
+
+User Temperature
+User Watchdog Value
+User Angle
+User Output
+User Reverse Maximum Boundary Start
+User Reverse Maximum Boundary End
+User Neutral Boundary Start
+User Neutral Boundary End
+User Forward Maximum Boundary Start
+User Forward Maximum Boundary End
+
+Firmware Version - Major
+Firmware Version - Minor
+Firmware Version - Patch
+Firmware Version - Build
+Software Repository Status
+Bootloader Version
+
+User Flash Read Password Input
+User Flash Write Password Input
+
+Special Commands
+Flash Commands
+Run Bootload Command
+Flash Parameter Read Password
+Flash Parameter Write Password

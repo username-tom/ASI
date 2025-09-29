@@ -1,0 +1,326 @@
+Name
+
+Communications Configuration Vector
+CAN heartbeat period
+
+RPDO1 COBID (low word)
+RPDO1 COBID (high word)
+RPDO2 COBID (low word)
+RPDO2 COBID (high word)
+RPDO3 COBID (low word)
+RPDO3 COBID (high word)
+RPDO4 COBID (low word)
+RPDO4 COBID (high word)
+RPDO5 COBID (low word)
+RPDO5 COBID (high word)
+RPDO6 COBID (low word)
+RPDO6 COBID (high word)
+RPDO7 COBID (low word)
+RPDO7 COBID (high word)
+RPDO8 COBID (low word)
+RPDO8 COBID (high word)
+RPDO9 COBID (low word)
+RPDO9 COBID (high word)
+RPDO10 COBID (low word)
+RPDO10 COBID (high word)
+RPDO11 COBID (low word)
+RPDO11 COBID (high word)
+RPDO12 COBID (low word)
+RPDO12 COBID (high word)
+
+TPDO1 COBID (low word)
+TPDO1 COBID (high word)
+TPDO2 COBID (low word)
+TPDO2 COBID (high word)
+TPDO3 COBID (low word)
+TPDO3 COBID (high word)
+TPDO4 COBID (low word)
+TPDO4 COBID (high word)
+TPDO5 COBID (low word)
+TPDO5 COBID (high word)
+TPDO6 COBID (low word)
+TPDO6 COBID (high word)
+TPDO7 COBID (low word)
+TPDO7 COBID (high word)
+TPDO8 COBID (low word)
+TPDO8 COBID (high word)
+TPDO9 COBID (low word)
+TPDO9 COBID (high word)
+TPDO10 COBID (low word)
+TPDO10 COBID (high word)
+TPDO11 COBID (low word)
+TPDO11 COBID (high word)
+TPDO12 COBID (low word)
+TPDO12 COBID (high word)
+
+RPDO1 map1 index
+RPDO1 map1 sub index and size
+RPDO1 map2 index
+RPDO1 map2 sub index and size
+RPDO1 map3 index
+RPDO1 map3 sub index and size
+RPDO1 map4 index
+RPDO1 map4 sub index and size
+RPDO2 map1 index
+RPDO2 map1 sub index and size
+RPDO2 map2 index
+RPDO2 map2 sub index and size
+RPDO2 map3 index
+RPDO2 map3 sub index and size
+RPDO2 map4 index
+RPDO2 map4 sub index and size
+RPDO3 map1 index
+RPDO3 map1 sub index and size
+RPDO3 map2 index
+RPDO3 map2 sub index and size
+RPDO3 map3 index
+RPDO3 map3 sub index and size
+RPDO3 map4 index
+RPDO3 map4 sub index and size
+RPDO4 map1 index
+RPDO4 map1 sub index and size
+RPDO4 map2 index
+RPDO4 map2 sub index and size
+RPDO4 map3 index
+RPDO4 map3 sub index and size
+RPDO4 map4 index
+RPDO4 map4 sub index and size
+RPDO5 map1 index
+RPDO5 map1 sub index and size
+RPDO5 map2 index
+RPDO5 map2 sub index and size
+RPDO5 map3 index
+RPDO5 map3 sub index and size
+RPDO5 map4 index
+RPDO5 map4 sub index and size
+RPDO6 map1 index
+RPDO6 map1 sub index and size
+RPDO6 map2 index
+RPDO6 map2 sub index and size
+RPDO6 map3 index
+RPDO6 map3 sub index and size
+RPDO6 map4 index
+RPDO6 map4 sub index and size
+RPDO7 map1 index
+RPDO7 map1 sub index and size
+RPDO7 map2 index
+RPDO7 map2 sub index and size
+RPDO7 map3 index
+RPDO7 map3 sub index and size
+RPDO7 map4 index
+RPDO7 map4 sub index and size
+RPDO8 map1 index
+RPDO8 map1 sub index and size
+RPDO8 map2 index
+RPDO8 map2 sub index and size
+RPDO8 map3 index
+RPDO8 map3 sub index and size
+RPDO8 map4 index
+RPDO8 map4 sub index and size
+RPDO9 map1 index
+RPDO9 map1 sub index and size
+RPDO9 map2 index
+RPDO9 map2 sub index and size
+RPDO9 map3 index
+RPDO9 map3 sub index and size
+RPDO9 map4 index
+RPDO9 map4 sub index and size
+RPDO10 map1 index
+RPDO10 map1 sub index and size
+RPDO10 map2 index
+RPDO10 map2 sub index and size
+RPDO10 map3 index
+RPDO10 map3 sub index and size
+RPDO10 map4 index
+RPDO10 map4 sub index and size
+RPDO11 map1 index
+RPDO11 map1 sub index and size
+RPDO11 map2 index
+RPDO11 map2 sub index and size
+RPDO11 map3 index
+RPDO11 map3 sub index and size
+RPDO11 map4 index
+RPDO11 map4 sub index and size
+RPDO12 map1 index
+RPDO12 map1 sub index and size
+RPDO12 map2 index
+RPDO12 map2 sub index and size
+RPDO12 map3 index
+RPDO12 map3 sub index and size
+RPDO12 map4 index
+RPDO12 map4 sub index and size
+
+TPDO1 map1 index
+TPDO1 map1 sub index and size
+TPDO1 map2 index
+TPDO1 map2 sub index and size
+TPDO1 map3 index
+TPDO1 map3 sub index and size
+TPDO1 map4 index
+TPDO1 map4 sub index and size
+TPDO2 map1 index
+TPDO2 map1 sub index and size
+TPDO2 map2 index
+TPDO2 map2 sub index and size
+TPDO2 map3 index
+TPDO2 map3 sub index and size
+TPDO2 map4 index
+TPDO2 map4 sub index and size
+TPDO3 map1 index
+TPDO3 map1 sub index and size
+TPDO3 map2 index
+TPDO3 map2 sub index and size
+TPDO3 map3 index
+TPDO3 map3 sub index and size
+TPDO3 map4 index
+TPDO3 map4 sub index and size
+TPDO4 map1 index
+TPDO4 map1 sub index and size
+TPDO4 map2 index
+TPDO4 map2 sub index and size
+TPDO4 map3 index
+TPDO4 map3 sub index and size
+TPDO4 map4 index
+TPDO4 map4 sub index and size
+TPDO5 map1 index
+TPDO5 map1 sub index and size
+TPDO5 map2 index
+TPDO5 map2 sub index and size
+TPDO5 map3 index
+TPDO5 map3 sub index and size
+TPDO5 map4 index
+TPDO5 map4 sub index and size
+TPDO6 map1 index
+TPDO6 map1 sub index and size
+TPDO6 map2 index
+TPDO6 map2 sub index and size
+TPDO6 map3 index
+TPDO6 map3 sub index and size
+TPDO6 map4 index
+TPDO6 map4 sub index and size
+TPDO7 map1 index
+TPDO7 map1 sub index and size
+TPDO7 map2 index
+TPDO7 map2 sub index and size
+TPDO7 map3 index
+TPDO7 map3 sub index and size
+TPDO7 map4 index
+TPDO7 map4 sub index and size
+TPDO8 map1 index
+TPDO8 map1 sub index and size
+TPDO8 map2 index
+TPDO8 map2 sub index and size
+TPDO8 map3 index
+TPDO8 map3 sub index and size
+TPDO8 map4 index
+TPDO8 map4 sub index and size
+TPDO9 map1 index
+TPDO9 map1 sub index and size
+TPDO9 map2 index
+TPDO9 map2 sub index and size
+TPDO9 map3 index
+TPDO9 map3 sub index and size
+TPDO9 map4 index
+TPDO9 map4 sub index and size
+TPDO10 map1 index
+TPDO10 map1 sub index and size
+TPDO10 map2 index
+TPDO10 map2 sub index and size
+TPDO10 map3 index
+TPDO10 map3 sub index and size
+TPDO10 map4 index
+TPDO10 map4 sub index and size
+TPDO11 map1 index
+TPDO11 map1 sub index and size
+TPDO11 map2 index
+TPDO11 map2 sub index and size
+TPDO11 map3 index
+TPDO11 map3 sub index and size
+TPDO11 map4 index
+TPDO11 map4 sub index and size
+TPDO12 map1 index
+TPDO12 map1 sub index and size
+TPDO12 map2 index
+TPDO12 map2 sub index and size
+TPDO12 map3 index
+TPDO12 map3 sub index and size
+TPDO12 map4 index
+TPDO12 map4 sub index and size
+
+RPDO1 size (words)
+RPDO2 size (words)
+RPDO3 size (words)
+RPDO4 size (words)
+RPDO5 size (words)
+RPDO6 size (words)
+RPDO7 size (words)
+RPDO8 size (words)
+RPDO9 size (words)
+RPDO10 size (words)
+RPDO11 size (words)
+RPDO12 size (words)
+
+TPDO1 size (words)
+TPDO2 size (words)
+TPDO3 size (words)
+TPDO4 size (words)
+TPDO5 size (words)
+TPDO6 size (words)
+TPDO7 size (words)
+TPDO8 size (words)
+TPDO9 size (words)
+TPDO10 size (words)
+TPDO11 size (words)
+TPDO12 size (words)
+
+RPDO1 transmission type
+RPDO2 transmission type
+RPDO3 transmission type
+RPDO4 transmission type
+RPDO5 transmission type
+RPDO6 transmission type
+RPDO7 transmission type
+RPDO8 transmission type
+RPDO9 transmission type
+RPDO10 transmission type
+RPDO11 transmission type
+RPDO12 transmission type
+
+TPDO1 transmission type
+TPDO2 transmission type
+TPDO3 transmission type
+TPDO4 transmission type
+TPDO5 transmission type
+TPDO6 transmission type
+TPDO7 transmission type
+TPDO8 transmission type
+TPDO9 transmission type
+TPDO10 transmission type
+TPDO11 transmission type
+TPDO12 transmission type
+
+RPDO1 timeout
+RPDO2 timeout
+RPDO3 timeout
+RPDO4 timeout
+RPDO5 timeout
+RPDO6 timeout
+RPDO7 timeout
+RPDO8 timeout
+RPDO9 timeout
+RPDO10 timeout
+RPDO11 timeout
+RPDO12 timeout
+
+TPDO1 event time
+TPDO2 event time
+TPDO3 event time
+TPDO4 event time
+TPDO5 event time
+TPDO6 event time
+TPDO7 event time
+TPDO8 event time
+TPDO9 event time
+TPDO10 event time
+TPDO11 event time
+TPDO12 event time

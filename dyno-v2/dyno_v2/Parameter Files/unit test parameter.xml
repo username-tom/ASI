@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSerializableParameter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SerializableParameter>
+    <Address>208</Address>
+    <Value>123</Value>
+  </SerializableParameter>
+  <SerializableParameter>
+    <Address>51</Address>
+    <Value>999</Value>
+  </SerializableParameter>
+</ArrayOfSerializableParameter>

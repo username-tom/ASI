@@ -1,0 +1,3041 @@
+<J1939_VCM>
+    <ParameterGroup>
+        <Parameter>
+            <ParameterGroupNumber>9728</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Control</Label>
+            <Acronym>MG1IC</Acronym>
+            <Rate>10</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10157</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit>count</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10158</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+                        Since there is no "Not Available" state, the sender must support the counter.
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10159</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Limits Request Override Mode</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This parameter provides a way to temporarily override limits that are being received by the inverter in other messages.  It allows a specific type of limit to be transmitted at a high rate or at the same moment as the set point for synchronization purposes.
+                        In normal operating conditions, the inverter operating limits are based on internal settings, other Limits Request parameters (slower rate), and SPN 10160 [Control Limits Request Override Maximum] and SPN 10161 [Control Limits Request Override Minimum] as defined for each mode below.
+                        Mode = 0 – Limits not currently being requested in this PG – The operating limits are not overridden.  If a limit was overridden before, then it shall revert to its normal value as defined by its associated Limit Request parameter or internally defined limits.
+                        Mode = 1 - Torque Limits Mode – The Override Maximum shall take precedence over [Limits Request Torque Maximum] and/or the Override Minimum shall take precedence over [Limits Request Torque Minimum].  If the mode changes to a value other than 1, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request Torque Maximum] and/or [Limits Request Torque Minimum] or internally defined limits.  Use [Reference Torque] to convert % to Nm.
+                        Mode = 2 - Speed Limits Mode – The Override Maximum shall take precedence over [Limits Request Speed Maximum] and/or the Override Minimum shall take precedence over [Limits Request Speed Minimum].  If the mode changes to a value other than 2, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request Speed Maximum] and/or [Limits Request Speed Minimum] or internally defined limits.  Use [Reference Speed] to convert % to rpm.
+                        Mode = 3 – DC Side Voltage Limits Mode – The Override Maximum shall take precedence over [Limits Request Voltage Maximum] and/or the Override Minimum shall take precedence over [Limits Request Voltage Minimum].  If the mode changes to a value other than 3, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request Voltage Maximum] and/or [Limits Request Voltage Minimum] or internally defined limits.  Use [Reference Voltage] to convert % to Volts.
+                        Mode = 4 – DC Side Current Limits Mode – The Override Maximum shall take precedence over [Limits Request Current Maximum] and/or the Override Minimum shall take precedence over [Limits Request Current Minimum].  If the mode changes to a value other than 4, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request Current Maximum] and/or [Limits Request Current Minimum] or internally defined limits.  Use [Reference Current] to convert % to Amps.
+                        Mode = 5 – DC Side Power Limits Mode – The Override Maximum shall take precedence over [Limits Request DC Side Power Maximum] and/or the Override Minimum shall take precedence over [Limits Request DC Side Power Minimum].  If the mode changes to a value other than 5, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request DC Side Power Maximum] and/or [Limits Request DC Side Power Minimum] or internally defined limits.  Use [Reference Power] to convert % to kW.
+                        Mode = 6 – Mechanical Power Limits Mode – The Override Maximum shall take precedence over [Limits Request Mechanical Power Maximum] and/or the Override Minimum shall take precedence over [Limits Request Power Minimum].  If the mode changes to a value other than 6, or the Override Maximum and/or Override Minimum are set to FBFh, then the inverter shall use the appropriate [Limits Request Mechanical Power Maximum] and/or [Limits Request Mechanical Power Minimum] or internally defined limits.  Use [Reference Power] to convert % to kW.
+                        Mode = 7-13 - SAE Reserved
+                        Mode = 14 – Error.  The operating limits are not overridden.  If a limit was overridden before, then it shall revert to its normal value as defined by its associated Limit Request parameter or internally defined limits.
+                        Mode = 15 – Not Requests / Take No Action.  The operating limits are not overridden.  If a limit was overridden before, then it shall revert to its normal value as defined by its associated Limit Request parameter or internally defined limits.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10160</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Limits Request Override Maximum</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The Maximum limit requested by this parameter depends on the value of SPN 10159 [Control Limits Request Override Mode].
+                        In normal operating conditions, the inverter operating limits are based on internal settings or Limits Request parameters as defined in each state of the Mode.
+                        This parameter allows a specific limit to override the current operating limits of the inverter.  It allows a specific type of limit to be transmitted at a high rate or at the same moment as the set point for synchronization purposes.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10161</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Limits Request Override Minimum</SuspectParameterLabel>
+                    <Start>4-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The Minimum limit requested by this parameter depends on the value of SPN 10159 [Control Limits Request Override Mode].
+                        In normal operating conditions, the inverter operating limits are based on internal settings or Limits Request parameters as defined in each state of the Mode.
+                        This parameter allows a specific limit to override the current operating limits of the inverter.  It allows a specific type of limit to be transmitted at a high rate or at the same moment as the set point for synchronization purposes.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10162</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Setpoint Mode Request</SuspectParameterLabel>
+                    <Start>6-4</Start>
+                    <SuspectParameterLength>5</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>31</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0 = Remote State Command 0, 2 = Remote State Command 1, 7/8/18 = Remote State Command(2) and Speed Regulator Mode (1/0/2)
+                        Requests the modes for this instance of the inverter.  See SPN 10167 [Control Setpoint Mode] for the feedback to this request.
+
+                        Passive modes:  Modes where the inverter does not actively control the motor torque, for example.
+                        0 = Power On - the inverter is commanded to be powered on and able to communicate, but the Power Stage is disabled e.g. no switching or output.
+                        1 = SAE Reserved
+                        2 = Standby - the inverter Power Stage is powered but commanded to a neutral operating mode i.e. no torque control, for example.
+                        3 = SAE Reserved
+                        4 = SAE Reserved
+                        5 = Manufacturer specific passive mode 1
+                        6 = Manufacturer specific passive mode 2
+
+                        Active modes:
+                        7 = Enable Torque Control Mode
+                        8 = Enable Speed Control Mode
+                        9 = Enable DC Side Voltage Mode
+                        10 = Enable DC Side Current Mode
+                        11 = Enable DC Power Control Mode
+                        12 = Enable Mechanical Power Control Mode
+                        13 = SAE Reserved
+                        14 = SAE Reserved
+                        15 = SAE Reserved
+                        16 = SAE Reserved
+                        17 = SAE Reserved
+                        18 = Manufacturer specific active mode 1
+                        19 = Manufacturer specific active mode 2
+
+                        Special modes:
+                        20 = Inverter active discharge mode e.g. used to discharge capacitance within the inverter.
+                        21 = Inverter power down command mode - afterwards inverter will not respond to further commands.
+                        22 = SAE Reserved
+                        23 = SAE Reserved
+                        24 = SAE Reserved
+                        25 = SAE Reserved
+                        26 = SAE Reserved
+                        27 = SAE Reserved
+                        28 = Manufacturer specific special mode 1
+                        29 = Manufacturer specific special mode 2
+                        30 = SAE Reserved
+                        31 = Don’t Care/Take No Action
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10163</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Control Setpoint Request</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.00390625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.99609375</Maximum>
+                    <SuspectParameterDescription>
+                        Requests the set point for this inverter.  The type of set point requested by this parameter depends on the value of SPN 10162 [Control Setpoint Mode Request] as follows:
+
+                        Passive Modes:
+                        In any Passive Mode, a bit value of FBFFh shall be set.
+
+                        Active Modes:
+                        Note: The sender should never request an active mode without an accompanying valid setpoint.
+
+                        Mode 7 = Enable Torque Control Mode – In this mode Control Setpoint Request is set to the Torque Setpoint in %.  Refer to SPN 10170 [Reference Torque] to convert % to Nm.
+                        Mode 8 = Enable Speed Control Mode – In this mode Control Setpoint Request is the Speed Setpoint in %.  Refer to SPN 10171 [Reference Speed] to convert % to rpm.
+                        Mode 9 = Enable DC Side Voltage Control Mode – In this mode Control Setpoint Request is the DC Side Voltage Setpoint in %.  Refer to SPN 10203 [Reference Voltage] to convert % to V.
+                        Mode 10 = Enable DC Side Current Control Mode – In this mode Control Setpoint Request is the DC Side Current Setpoint in %.  Refer to SPN 10202 [Reference Current] to convert % to A.
+                        Mode 11 = Enable DC Side Power Control Mode – In this mode Control Setpoint Request is the DC Side Power Setpoint in %.  Refer to SPN 10172 [Reference Power] to convert % to kW.
+                        Mode 12 = Enable Mechanical Power Control Mode – In this mode Control Setpoint Request is the Motor Power Setpoint in %.  Refer to SPN 10172 [Reference Power] to convert % to kW.
+                        Mode 13 = SAE Reserved
+                        Mode 14 = SAE Reserved
+                        Mode 15 = SAE Reserved
+                        Mode 16 = SAE Reserved
+                        Mode 17 = SAE Reserved
+                        Mode 18 = Manufacturer Specific Active Mode 1 – This value has Manufacturer Specific use.
+                        Mode 19 = Manufacturer Specific Active Mode 2 – This value has Manufacturer Specific use.
+
+                        Special Modes:
+                        In any Special Mode, a bit value of FBFFh shall be set.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Primary Control Message from this instance of Inverter. Some examples of use would be for a hybrid or electric vehicle propulsion motor or generator.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>24064</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Limits Request DC Side</Label>
+            <Acronym>MG1ILRDC</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10204</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit>count</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10205</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+                        Since there is no "Not Available" state, the sender must support the counter.
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10206</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side Voltage Maximum</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a maximum DC Side Voltage limit for this device instance.
+                        Refer to SPN 10203 [Reference Voltage] to convert % to Volts.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10207</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side Voltage Minimum</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a minimum DC Side Voltage limit for this device instance.
+                        Refer to SPN 10203 [Reference Voltage] to convert % to Volts.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10208</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side Current Maximum</SuspectParameterLabel>
+                    <Start>5-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter>Remote maximum battery current limit</ASIParameter>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a maximum DC Side Current limit for this device instance.
+                        Refer to SPN 10202 [Reference Current] to convert % to Amps.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        While motoring, the current is defined as positive.  For example, in a hybrid propulsion system, positive current flows from the HVES through the inverter to motor.
+                        While generating, the current is defined as negative.  For example, in a hybrid propulsion system, negative current flows from the motor through the inverter to the HVES.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10209</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request DC Side Current Minimum</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter>Remote maximum regen battery current limit</ASIParameter>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a minimum DC Side Current limit for this device instance.
+                        Refer to SPN 10202 [Reference Current] to convert % to Amps.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        While motoring, the current is defined as positive.  For example, in a hybrid propulsion system, positive current flows from the HVES through the inverter to motor.
+                        While generating, the current is defined as negative.  For example, in a hybrid propulsion system, negative current flows from the motor through the inverter to the HVES.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Sets the DC Side Voltage and Current limits for the inverter being controlled.  Some examples of use would be for a hybrid or electric vehicle propulsion motor or generator.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>24320</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Limits Request Mechanical</Label>
+            <Acronym>MG1ILRM</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10188</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit>count</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10189</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+                        Since there is no ""Not Available"" state, the sender must support the counter.
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10190</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical Torque Maximum</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter>Remote maximum motoring current</ASIParameter>
+                    <SuspectParameterDescription>
+                        This requests a maximum torque the inverter should command for this device.
+                        Refer to SPN 10170 [Reference Torque] to convert % to Nm.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        For example, in a typical vehicle application, the Maximum limit would be positive and the Minimum limit would be negative.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10191</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical Torque Minimum</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter>Remote minimum motoring current</ASIParameter>
+                    <SuspectParameterDescription>
+                        This requests a minimum torque the inverter should command for this device.
+                        Refer to SPN 10170 [Reference Torque] to convert % to Nm.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        For example, in a typical vehicle application, the Maximum limit would be positive and the Minimum limit would be negative.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10192</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical Speed Maximum</SuspectParameterLabel>
+                    <Start>5-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a maximum speed limit for this device.
+                        Refer to SPN 10171 [Reference Speed] to convert % to rpm.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        One use of this message is for when SPN 10162 [Control Setpoint Mode Request] is set to Torque Control Mode, the torque may be limited by the inverter to protect against exceeding this speed limit.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                        For example, in a typical vehicle application, the Maximum limit would be positive and the Minimum limit would be negative.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10193</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Limits Request Mechanical Speed Minimum</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This is a request to the inverter to set a minimum speed limit for this device.
+                        Refer to SPN 10171 [Reference Speed] to convert % to rpm.
+                        Request a value of FBFh to instruct the inverter to use its default values.
+                        One use of this message is for when SPN 10162 [Control Setpoint Mode Request] is set to Torque Control Mode, the torque may be increased by the inverter to protect against falling below this speed limit.
+                        This limit shall solely lead to reducing the absolute torque, not increasing it nor changing the torque direction. Therefore, when limits are exceeded, the inverter shall not independently apply torque to force the system to meet the limit again. However, the Controller Application commanding the Inverter may apply torque or speed commands to achieve the desired limit.
+                        For example, in a typical vehicle application, the Maximum limit would be positive and the Minimum limit would be negative.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>Sets the torque and speed limits for the inverter being controlled. Some examples of use would be for a hybrid or electric vehicle propulsion motor or generator.</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>6912</ParameterGroupNumber>
+            <Label>Vanguard Battery Fask Pack Command</Label>
+            <Acronym>VBFPC</Acronym>
+            <Rate>100</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1</SuspectParameterNumber>
+                    <SuspectParameterLabel>1</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>2</SuspectParameterNumber>
+                    <SuspectParameterLabel>2</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3</SuspectParameterNumber>
+                    <SuspectParameterLabel>3</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>4</SuspectParameterNumber>
+                    <SuspectParameterLabel>4</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>5</SuspectParameterNumber>
+                    <SuspectParameterLabel>Counter</SuspectParameterLabel>
+                    <Start>7-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>6</SuspectParameterNumber>
+                    <SuspectParameterLabel>CRC</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>VCM Battery Message</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>65296</ParameterGroupNumber>
+            <Label>VCM Status 1</Label>
+            <Acronym>VCM1</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1</SuspectParameterNumber>
+                    <SuspectParameterLabel>System Brake</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						System Brake Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>2</SuspectParameterNumber>
+                    <SuspectParameterLabel>Foot Brake</SuspectParameterLabel>
+                    <Start>1-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Foot Brake Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3</SuspectParameterNumber>
+                    <SuspectParameterLabel>Left Brake</SuspectParameterLabel>
+                    <Start>1-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>4</SuspectParameterNumber>
+                    <SuspectParameterLabel>Right Brake</SuspectParameterLabel>
+                    <Start>1-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Right Brake Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>5</SuspectParameterNumber>
+                    <SuspectParameterLabel>Traction Profile 4-Way Switch</SuspectParameterLabel>
+                    <Start>1-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Traction Profile 4-Way Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>6</SuspectParameterNumber>
+                    <SuspectParameterLabel>Deck Profile 4-Way Switch</SuspectParameterLabel>
+                    <Start>1-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Deck Profile 4-Way Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>7</SuspectParameterNumber>
+                    <SuspectParameterLabel>Charger Door Switch</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Charger Door Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>8</SuspectParameterNumber>
+                    <SuspectParameterLabel>Charger Loopback Switch</SuspectParameterLabel>
+                    <Start>2-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Charger Loopback Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>9</SuspectParameterNumber>
+                    <SuspectParameterLabel>Seat Switch</SuspectParameterLabel>
+                    <Start>2-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Seat Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10</SuspectParameterNumber>
+                    <SuspectParameterLabel>PTO Switch</SuspectParameterLabel>
+                    <Start>2-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						PTO Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>11</SuspectParameterNumber>
+                    <SuspectParameterLabel>Chute Switch</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Chute Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>12</SuspectParameterNumber>
+                    <SuspectParameterLabel>Boost Switch</SuspectParameterLabel>
+                    <Start>2-6</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Boost Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13</SuspectParameterNumber>
+                    <SuspectParameterLabel>Creep Switch</SuspectParameterLabel>
+                    <Start>2-7</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Creep Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>14</SuspectParameterNumber>
+                    <SuspectParameterLabel>Parking Brake Release Switch</SuspectParameterLabel>
+                    <Start>2-8</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Parking Brake Release Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>15</SuspectParameterNumber>
+                    <SuspectParameterLabel>Key Switch</SuspectParameterLabel>
+                    <Start>4-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Key Switch Status
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>16</SuspectParameterNumber>
+                    <SuspectParameterLabel>System State</SuspectParameterLabel>
+                    <Start>4-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						System Status
+						0 - Off
+						1 - On 
+						2 - Error 
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>17</SuspectParameterNumber>
+                    <SuspectParameterLabel>Battery State</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Battery Status
+						0 - Off 
+						1 - Precharging
+						2 - Charging 
+						3 - Discharging 
+						4 - Error 
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>18</SuspectParameterNumber>
+                    <SuspectParameterLabel>Vehicle State</SuspectParameterLabel>
+                    <Start>5-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Vehicle Status
+						0 - Off 
+						1 - Startup
+						2 - Calibration 
+						3 - Charging 
+						4 - Standby 
+						5 - Running 
+						6 - Limping 
+						7 - Secondary Standby 
+						8 - Secondary Standby Limping 
+						9 - Error 
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>19</SuspectParameterNumber>
+                    <SuspectParameterLabel>Traction State</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Traction Status
+						0 - Off 
+						1 - Hold 
+						2 - Running  
+						3 - Ramp Down 
+						4 - Error
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>20</SuspectParameterNumber>
+                    <SuspectParameterLabel>Deck State</SuspectParameterLabel>
+                    <Start>6-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Deck Status
+						0 - Off 
+						1 - Off - Stall
+						2 - Off - Low Battery Warning 
+						3 - Winding Down 
+						4 - Winding Down - Stall  
+						5 - Winding Down - Low Battery Warning  
+						6 - Running 
+						7 - Error
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>21</SuspectParameterNumber>
+                    <SuspectParameterLabel>Deck Run Time</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Deck Run Time: 1 = 6 minutes
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>VCM Message 2</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>65297</ParameterGroupNumber>
+            <Label>VCM Status 2</Label>
+            <Acronym>VCM2</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>22</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Operator Off Seat</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Operator Off Seat
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>23</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Charger Door Open</SuspectParameterLabel>
+                    <Start>1-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Charger Door Open
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>24</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Battery Not Discharging</SuspectParameterLabel>
+                    <Start>1-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Battery Not Discharging
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>25</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Not Enough Regen Current</SuspectParameterLabel>
+                    <Start>1-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Not Enough Regen Current
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>26</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Key Switch Off</SuspectParameterLabel>
+                    <Start>1-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Key Switch Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>25</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Peripheral Fault</SuspectParameterLabel>
+                    <Start>1-6</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Peripheral Fault
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>26</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Traction Fault</SuspectParameterLabel>
+                    <Start>1-7</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Traction Fault
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>27</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Start Button Depressed</SuspectParameterLabel>
+                    <Start>1-8</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Start Button Depressed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>28</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Non-Start Button Pressed</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Non-Start Button Pressed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>29</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - No Traction Communication</SuspectParameterLabel>
+                    <Start>2-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - No Traction Communication
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>30</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Foot Throttle Not Ready/Neutral</SuspectParameterLabel>
+                    <Start>2-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Foot Throttle Not Ready/Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>31</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Left Throttle Not Ready/Neutral</SuspectParameterLabel>
+                    <Start>2-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Left Throttle Not Ready/Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>32</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Right Throttle Not Ready/Neutral</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Right Throttle Not Ready/Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>33</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - System Brake is Off</SuspectParameterLabel>
+                    <Start>2-6</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - System Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>34</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Foot Brake is Off</SuspectParameterLabel>
+                    <Start>2-7</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Foot Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>35</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Left Brake is Off</SuspectParameterLabel>
+                    <Start>2-8</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Left Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>36</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Right Brake is Off</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Right Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>37</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Parking Brake Mechanically Released</SuspectParameterLabel>
+                    <Start>3-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Parking Brake Mechanically Released
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>38</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - Battery is Underperforming</SuspectParameterLabel>
+                    <Start>3-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - Battery is Underperforming 
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>39</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Prevention - System Brake On in Secondary Standby</SuspectParameterLabel>
+                    <Start>3-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Prevention Reason - System Brake On in Secondary Standby 
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>40</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Operator Off Seat</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Operator Off Seat
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>41</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Charger Door Open</SuspectParameterLabel>
+                    <Start>4-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Charger Door Open
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>42</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Battery Not Discharging</SuspectParameterLabel>
+                    <Start>4-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Battery Not Discharging
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>43</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Not Enought Regen Current</SuspectParameterLabel>
+                    <Start>4-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Not Enought Regen Current
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>44</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System State is Not On</SuspectParameterLabel>
+                    <Start>4-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System State is Not On
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>45</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Key Switch Off</SuspectParameterLabel>
+                    <Start>4-6</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Key Switch Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>46</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Peripheral Fault</SuspectParameterLabel>
+                    <Start>4-7</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Peripheral Fault
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>47</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Traction Fault</SuspectParameterLabel>
+                    <Start>4-8</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Traction Fault
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>48</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Start Button Pressed</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Start Button Pressed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>49</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Foot Throttle No Longer Ready</SuspectParameterLabel>
+                    <Start>5-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Foot Throttle No Longer Ready
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>50</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Left Throttle No Longer Ready</SuspectParameterLabel>
+                    <Start>5-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Left Throttle No Longer Ready
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>51</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Right Throttle No Longer Ready</SuspectParameterLabel>
+                    <Start>5-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Right Throttle No Longer Ready
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>52</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Foot Throttle not Neutral</SuspectParameterLabel>
+                    <Start>5-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Foot Throttle not Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>53</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Left Throttle not Neutral</SuspectParameterLabel>
+                    <Start>5-6</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Left Throttle not Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>54</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Right Throttle not Neutral</SuspectParameterLabel>
+                    <Start>5-7</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Right Throttle not Neutral
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>55</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while System Brake is Off</SuspectParameterLabel>
+                    <Start>5-8</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while System Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>56</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Foot Brake is Off</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Foot Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>57</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Left Brake is Off</SuspectParameterLabel>
+                    <Start>6-2</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Left Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>58</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - System Brake On while Right Brake is Off</SuspectParameterLabel>
+                    <Start>6-3</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while Right Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>59</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Parking Brake Mechanically Released</SuspectParameterLabel>
+                    <Start>6-4</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - Parking Brake Mechanically Released
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>60</SuspectParameterNumber>
+                    <SuspectParameterLabel>Run Exit - Battery Underperforming</SuspectParameterLabel>
+                    <Start>6-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Run Exit Reason - System Brake On while System Brake is Off
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>61</SuspectParameterNumber>
+                    <SuspectParameterLabel>Traction Run Time</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+						Traction Run Time: 1 = 6 minutes
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>VCM Message 2</Description>
+        </Parameter>
+		<Parameter>
+            <ParameterGroupNumber>61184</ParameterGroupNumber>
+            <Label>VCM Vanguard Battery Feedback</Label>
+            <Acronym>VVBF</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10</SuspectParameterNumber>
+                    <SuspectParameterLabel>10</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>11</SuspectParameterNumber>
+                    <SuspectParameterLabel>11</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>12</SuspectParameterNumber>
+                    <SuspectParameterLabel>12</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13</SuspectParameterNumber>
+                    <SuspectParameterLabel>13</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>14</SuspectParameterNumber>
+                    <SuspectParameterLabel>14</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>15</SuspectParameterNumber>
+                    <SuspectParameterLabel>15</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit></Unit>
+                    <Minimum></Minimum>
+                    <Maximum></Maximum>
+                    <ASIParameter></ASIParameter>
+                    <SuspectParameterDescription>
+
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>VCM Vanguard Battery Feedback Message</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64369</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Motor Temperature</Label>
+            <Acronym>MG1IMT</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>9059</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Temperature 1</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter>motor temperature</ASIParameter>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the motor.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10220</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Temperature 2</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the motor.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10221</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Temperature 3</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the motor.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10222</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Temperature 4</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the motor.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>Motor Temperature Status Message</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64370</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Temperature</Label>
+            <Acronym>MG1IT</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10216</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Temperature 1</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter>controller temperature</ASIParameter>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the inverter.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10217</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Temperature 2</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter>dsp temperature</ASIParameter>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the inverter.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10218</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Temperature 3</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the inverter.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10219</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Temperature 4</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the inverter.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10914</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Temperature 5</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>-40</Offset>
+                    <Unit>°C</Unit>
+                    <Minimum>-40</Minimum>
+                    <Maximum>210</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The exact location of this temperature can be defined by the manufacturer.  It is intended to be located somewhere on the inverter.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>Inverter Temperature Status Message</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64371</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Reference 2</Label>
+            <Acronym>MG1IR2</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>3</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10200</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference 2 CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10201</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference 2 Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+
+                        Since there is no "Not Available" state, the sender must support the counter.
+
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10202</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference Current</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.125</Scale>
+                    <Offset>0</Offset>
+                    <Unit>A</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>8031.875</Maximum>
+                    <ASIParameter>Rated motor current</ASIParameter>
+                    <SuspectParameterDescription>
+                        This value is used for converting inverter current in percent to units of Amps (RMS or DC).
+
+                        (Value in Amps) = (Percent Value)/(100%) * (Reference Current)
+
+                        For example, if this parameter has a value of 200 A and the percent value is equal to 75%, then the value in Amps will be found as follows:
+
+                        Value in Amps = (75%)/(100%) * (200 A) = 150 A
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10203</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference Voltage</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.125</Scale>
+                    <Offset>0</Offset>
+                    <Unit>V</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>8031.875</Maximum>
+                    <ASIParameter>Rated system voltage</ASIParameter>
+                    <SuspectParameterDescription>
+                        This value is used for converting inverter voltage in percent to units of Volts (RMS or DC).
+
+                        (Value in Volts) = (Percent Value)/(100%) * (Reference Voltage)
+
+                        For example, if this parameter has a value of 400 V and the percent value is equal to 75%, then the value in Volts will be found as follows:
+
+                        Value in Volts = (75%)/(100%) * (400 V) = 300 V
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>Inverter Temperature Status Message</Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64372</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Status 1</Label>
+            <Acronym>MG1IS1</Acronym>
+            <Rate>10</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>3</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10173</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Status 1 CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10174</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Status 1 Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+
+                        Since there is no "Not Available" state, the sender must support the counter.
+
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>9061</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Torque</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The measured or estimated motor torque.  This refers to the motor rotor output and excludes any gearbox that may be attached to the motor.
+
+                        Refer to SPN 10170 [Reference Torque] to convert % to Nm.
+
+
+                        The motor is generating when SPN 9057 [Speed] and SPN 9061 [Torque] have opposite signs.  It is motoring when the speed and torque have the same signs.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>9057</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Speed</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.00390625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.99609375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The measured or estimated motor speed.  This refers to the motor rotor output and excludes any gearbox that may be attached to the motor.
+
+                        Refer to SPN 10171 [Reference Speed] to convert % to rpm.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10175</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter DC Side Current</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This is the DC side current of the inverter.
+
+                        Refer to SPN 10202 [Reference Current] to convert % to Amps.
+
+                        While motoring, the current is defined as positive.  For example, in a hybrid propulsion system, positive current flows from the HVES through the inverter to motor.
+
+                        While generating, the current is defined as negative.  For example, in a hybrid propulsion system, negative current flows from the motor through the inverter to the HVES.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>9101</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter DC Side Voltage</SuspectParameterLabel>
+                    <Start>7-5</Start>
+                    <SuspectParameterLength>12</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>-125</Offset>
+                    <Unit>%</Unit>
+                    <Minimum>-125</Minimum>
+                    <Maximum>125.9375</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The measured or estimated DC side voltage.
+
+                        Refer to SPN 10203 [Reference Voltage] to convert % to Volts.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                First Status Message from the Inverter.  Some examples of use would be for a hybrid or electric vehicle propulsion motor or generator.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64373</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Reference 1</Label>
+            <Acronym>MG1IR1</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>3</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10168</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference 1 CRC</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The CRC is defined as follows:
+                            • Length: 8 bits
+                            • Polynomial: x^8+x^5+x^3+x^2+x+1
+                            • Initial Value: FFh
+                            • Input Data Reflection: Not reflected
+                            • Result Data Reflection: Not reflected
+                            • XOR value: FFh
+
+                        SAE makes no claim of the functional safety level achieved by this CRC. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this CRC may provide. As part of an overall functional safety analysis, the 1 byte CRC defined here may provide a High Level of Diagnostic Coverage when combined with the counter and timeout monitoring according to the 2011-11-15 revision of ISO 26262-5 Annex D Table D.8 and paragraph D2.7.6 Information Redundancy. This CRC was based on the generator polynomial 97h (AUTOSAR End 2 End Profile 2) with a hamming distance of 4 for up to 119 bits.
+
+                        The CRC includes the seven bytes of Data in this PG, the PGN, and its Source Address.
+
+                        The byte order used to calculate the CRC is as follows:
+                        (Data Byte 2 + Data Byte 3 + Data Byte 4 + Data Byte 5 + Data Byte 6 + Data Byte 7 + Data Byte 8 + Source Address byte + PGN LSB + PGN second byte + PGN MSB)
+
+                        See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10169</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference 1 Counter</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time. The receiver of the information may use the counter parameter to detect this situation. The transmitting device will increase the message counter by one with every transmission. The message counter will count from 0 to 15 and then restart at 0.
+
+                        Since there is no "Not Available" state, the sender must support the counter.
+
+                        SAE makes no claim of the functional safety level achieved by this counter. Users are responsible for analysis to determine the functional safety level (e.g. IEC 61508, ISO 26262) that their architecture may require and that this counter may provide. See J1939-76 for an alternate approach that may provide a level of functional safety.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10170</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference Torque</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.5</Scale>
+                    <Offset>0</Offset>
+                    <Unit>Nm</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>32127.5</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        This value is used for converting torque in percent to units of Nm.
+
+                        Value in Nm = (Percent Value)/(100%) * (Reference Torque)
+
+                        For example, if this parameter has a value of 400 Nm and the percent value is equal to 75%, then the value in Nm will be found as follows:
+
+                        Value in Nm = (75%)/(100%) * (400 Nm) = 300 Nm
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10171</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference Speed</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>4</Scale>
+                    <Offset>0</Offset>
+                    <Unit>RPM</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>257020</Maximum>
+                    <ASIParameter>motor rpm</ASIParameter>
+                    <SuspectParameterDescription>
+                        This value is used for converting Speed in percent to units of rpm.
+
+                        Value in rpm = (Percent Value)/(100%) * (Reference Speed)
+
+                        For example, if this parameter has a value of 8192 rpm and the percent value is equal to 75%, then the value in rpm will be found as follows:
+
+                        Value in rpm = (75%)/(100%) * (8192 rpm) = 6144 rpm
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10172</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Reference Power</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>0.0625</Scale>
+                    <Offset>0</Offset>
+                    <Unit>kW</Unit>
+                    <Minimum>0</Minimum>
+                    <Maximum>4015.9375</Maximum>
+                    <ASIParameter>Rated motor power</ASIParameter>
+                    <SuspectParameterDescription>
+                        This value is used for converting power in percent to units of kW.  It is applicable to both mechanical and electrical power.
+
+                        (Value in kW) = (Percent Value)/(100%) * (Reference Power)
+
+                        For example, if this parameter has a value of 400 kW and the percent value is equal to 75%, then the value in kW will be found as follows:
+
+                        Value in kW = (75%)/(100%) * (400 kW) = 300 kW
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                The torque and speed reference values from this inverter.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>64361</ParameterGroupNumber>
+            <Label>Motor/Generator 1 Inverter Active Power Limits</Label>
+            <Acronym>MG1IAPL</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10779</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Undefined Reason</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Output power is being limited due to an undefined reason.
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10780</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Current Maximum</SuspectParameterLabel>
+                    <Start>1-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Output power is being limited due to SPN 10175 [Inverter DC Side Current] approaching or exceeding the SPN 10214 [Inverter Limits Active DC Side Current Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10781</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Current Minimum</SuspectParameterLabel>
+                    <Start>1-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Output power is being limited due to SPN 10175 [Inverter DC Side Current] approaching or falling below the SPN 10215 [Inverter Limits Active DC Side Current Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10782</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Voltage Maximum</SuspectParameterLabel>
+                    <Start>1-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Output power is being limited due to SPN 9101 [Inverter DC Side Voltage] approaching or exceeding the SPN 10212 [Inverter Limits Active DC Side Voltage Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10783</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Voltage Minimum</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Output power is being limited due to SPN 9101 [Inverter DC Side Voltage] approaching or falling below the SPN 10213 [Inverter Limits Active DC Side Voltage Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10784</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Mechanical Power Maximum</SuspectParameterLabel>
+                    <Start>2-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to Mechanical Power (product of SPN 9061 [Torque] and SPN 9057 [Speed]) approaching or exceeding the SPN 10184 [Inverter Limits Active Mechanical Power Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10785</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Mechanical Power Minimum</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to Mechanical Power (product of SPN 9061 [Torque] and SPN 9057 [Speed]) approaching or falling below the SPN 10185 [Inverter Limits Active Mechanical Power Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10786</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Power Maximum</SuspectParameterLabel>
+                    <Start>2-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to DC Side Power (product of SPN 10175 [Inverter DC Side Current] and SPN 9101 [Inverter DC Side Voltage]) approaching or exceeding the SPN 10186 [Inverter Limits Active DC Side Power Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10787</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to DC Side Power Minimum</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to DC Side Power (product of SPN 10175 [Inverter DC Side Current] and SPN 9101 [Inverter DC Side Voltage]) approaching or falling below the SPN 10187 [Inverter Limits Active DC Side Power Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10788</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Torque Maximum</SuspectParameterLabel>
+                    <Start>3-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to SPN 9061 [Torque] approaching or exceeding the SPN 10196 [Inverter Limits Active Torque Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10789</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Torque Minimum</SuspectParameterLabel>
+                    <Start>3-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to SPN 9061 [Torque] approaching or falling below the SPN 10197 [Inverter Limits Active Torque Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10790</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Speed Maximum</SuspectParameterLabel>
+                    <Start>3-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to SPN 9057 [Speed] approaching or exceeding the SPN 10198 [Inverter Limits Active Speed Maximum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10791</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Speed Minimum</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to SPN 9057 [Speed] approaching or falling below the SPN 10199 [Inverter Limits Active Speed Minimum].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10792</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Inverter Temperature</SuspectParameterLabel>
+                    <Start>4-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to one or more inverter temperature(s), see SPNs 10216 through 10219 [Inverter Temperature 1-4] approaching or exceeding internally defined limit(s).
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>10793</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited due to Motor Temperature</SuspectParameterLabel>
+                    <Start>4-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to one or more motor temperature(s), see SPNs 9059 and 10220 through 10222 [Motor Temperature 1-4] approaching or exceeding internally defined limit(s).
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13041</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited Due to Fault Condition</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to an fault condition that requires a torque limitation to prevent further damage (e.g. “limp home mode”).  For example, this could be in case of temperature sensor defects.  Typically, this parameter would be accompanied by a DTC indicating the failed component.
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13042</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited Due to Active Torque Rate Limit</SuspectParameterLabel>
+                    <Start>5-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to exceeding internally defined torque rate limit(s) or SPN 10797 [Inverter Rate Limits Request Absolute Torque Rate Limit].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13043</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Power Limited Due to Active Speed Rate Limit</SuspectParameterLabel>
+                    <Start>5-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output power is being limited due to exceeding internally defined speed rate limit(s) or SPN 10796 [Inverter Rate Limits Request Absolute Speed Rate Limit].
+
+                        00b = No power limit for this reason
+                        01b = Power limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>13044</SuspectParameterNumber>
+                    <SuspectParameterLabel>Motor/Generator 1 Inverter Torque Limited Due to Machine Characteristics</SuspectParameterLabel>
+                    <Start>5-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        "Output torque is being limited due to SPN 9061 [Torque] approaching or exceeding a motor design characteristic.  For example, for permanent magnet machines, this would be in the field weakening area.
+
+                        00b = No torque limit for this reason
+                        01b = Torque limited for this reason
+                        10b = Error
+                        11b = Not Available"
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Sent by this Motor/Generator Inverter instance and contains the current operating conditions of the inverter.  This message would be received by a controller application that is responsible for controlling this Motor/Generator Inverter.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>65226</ParameterGroupNumber>
+            <Label>Active Diagnostic Trouble Codes</Label>
+            <Acronym>DM1</Acronym>
+            <Rate>1000</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>987</SuspectParameterNumber>
+                    <SuspectParameterLabel>Protect Lamp</SuspectParameterLabel>
+                    <Start>1-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>624</SuspectParameterNumber>
+                    <SuspectParameterLabel>Amber Warning Lamp</SuspectParameterLabel>
+                    <Start>1-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>623</SuspectParameterNumber>
+                    <SuspectParameterLabel>Red Stop Lamp</SuspectParameterLabel>
+                    <Start>1-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1213</SuspectParameterNumber>
+                    <SuspectParameterLabel>Malfunction Indicator Lamp</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3041</SuspectParameterNumber>
+                    <SuspectParameterLabel>Flash Protect Lamp</SuspectParameterLabel>
+                    <Start>2-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3040</SuspectParameterNumber>
+                    <SuspectParameterLabel>Flash Amber Warning Lamp (AWL)</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3039</SuspectParameterNumber>
+                    <SuspectParameterLabel>Flash Red Stop Lamp (RSL)</SuspectParameterLabel>
+                    <Start>2-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>3038</SuspectParameterNumber>
+                    <SuspectParameterLabel>Flash Malfunction Indicator Lamp</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1214</SuspectParameterNumber>
+                    <SuspectParameterLabel>Suspect Parameter Number</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>19</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>524287</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1215</SuspectParameterNumber>
+                    <SuspectParameterLabel>Failure Mode Identifier</SuspectParameterLabel>
+                    <Start>5-4</Start>
+                    <SuspectParameterLength>5</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>31</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1216</SuspectParameterNumber>
+                    <SuspectParameterLabel>Occurrence Count</SuspectParameterLabel>
+                    <Start>6-2</Start>
+                    <SuspectParameterLength>7</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>126</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1706</SuspectParameterNumber>
+                    <SuspectParameterLabel>SPN Conversion Method</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>126</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                See document J1939-73 for PG details.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>57088</ParameterGroupNumber>
+            <Label>Stop Start Broadcast</Label>
+            <Acronym>DM13</Acronym>
+            <Rate/>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>639</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1939 Network #1, Primary Vehicle Network</SuspectParameterLabel>
+                    <Start>1-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>622</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1922</SuspectParameterLabel>
+                    <Start>1-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>608</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1587</SuspectParameterLabel>
+                    <Start>1-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1230</SuspectParameterNumber>
+                    <SuspectParameterLabel>Current Data Link</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1234</SuspectParameterNumber>
+                    <SuspectParameterLabel>Other, Manufacturer Specified Port</SuspectParameterLabel>
+                    <Start>2-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1233</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1850</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1232</SuspectParameterNumber>
+                    <SuspectParameterLabel>ISO 9141</SuspectParameterLabel>
+                    <Start>2-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1231</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1939 Network #2</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1668</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1939 Network #4</SuspectParameterLabel>
+                    <Start>3-7</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>5588</SuspectParameterNumber>
+                    <SuspectParameterLabel>Proprietary Network #2</SuspectParameterLabel>
+                    <Start>3-5</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>625</SuspectParameterNumber>
+                    <SuspectParameterLabel>Proprietary Network #1</SuspectParameterLabel>
+                    <Start>3-3</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1235</SuspectParameterNumber>
+                    <SuspectParameterLabel>J1939 Network #3</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>2</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>3</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>2618</SuspectParameterNumber>
+                    <SuspectParameterLabel>Suspend Signal</SuspectParameterLabel>
+                    <Start>4-5</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>15</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1236</SuspectParameterNumber>
+                    <SuspectParameterLabel>Hold Signal</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>4</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>126</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>2619</SuspectParameterNumber>
+                    <SuspectParameterLabel>Suspend Duration</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>64255</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        See document J1939-73 for SP details.
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                See document J1939-73 for PG details.
+            </Description>
+        </Parameter>
+    </ParameterGroup>
+</J1939_VCM>

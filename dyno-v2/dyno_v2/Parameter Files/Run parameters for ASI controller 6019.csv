@@ -1,0 +1,168 @@
+Name
+Control command source
+Speed regulator mode
+
+Remote torque command
+Remote Speed Command in RPM
+Remote maximum braking current
+Remote maximum motoring current
+Remote state command
+Regeneration battery current limit
+Remote speed command
+controller status
+TE Configuration
+
+motor speed
+motor rpm
+motor temperature
+controller temperature
+Write parameters to flash
+user access level
+Parameter access code
+
+Fault clear
+faults
+faults2
+warnings
+warnings2
+
+MicroElectronics Test Register
+Command timeout threshold
+Average Command timeout threshold
+
+Test mode
+Open loop current
+Open loop frequency
+Open loop angle
+
+Motor features
+
+software revision level
+Flash Parameter Write Access Code
+Write Access Code
+Flash parameter read access code
+Parameter read access code
+
+Ia_rms
+Ic_rms
+
+Motor foldback starting temperature
+Controller foldback starting temperature
+
+Rated system voltage
+Rated motor current
+Rated motor speed
+# of motor pole pairs
+Gear ratio
+
+Rs
+Ls
+Motor position sensor type
+Hall offset
+
+Hall sector[0]
+Hall sector[1]
+Hall sector[2]
+Hall sector[3]
+Hall sector[4]
+Hall sector[5]
+Hall sector[6]
+Hall sector[7]
+
+Current regulator Kp
+Current regulator Ki
+Speed regulator Kp
+Speed regulator Ki
+
+Throttle sensor source
+Throttle off voltage
+Throttle full voltage
+Remote Throttle Voltage
+Throttle sensor source
+throttle setpoint
+torque reference
+vehicle speed
+throttle voltage
+Assist mode source
+Display assist level command
+Vehicle maximum speed (Race mode PAS max speed)
+Vehicle maximum speed (Race mode Throttle max speed)
+Throttle deadband threshold
+
+Test build
+boot loader software revision
+application CRC32 high word
+application CRC32 low word
+parameter CRC32 high word
+parameter CRC32 low word
+bootloader CRC32 high word
+bootloader CRC32 low word
+Load firmware to flash
+
+Motor discover mode
+
+OTP serial number0
+OTP serial number1
+OTP serial number2
+OTP serial number3
+OTP serial number4
+OTP serial number5
+OTP serial number6
+OTP serial number7
+Product Part Number
+MFG PCBA Serial Number 1
+MFG PCBA Serial Number 2
+Part Number Revision
+MFG Customer Parameter File
+MFG Firmware File
+MFG PCBA Serial Number 1
+MFG PCBA Serial Number 2
+autotune Rs
+autotune Ls
+autotune rated rpm
+autotune hall offset angle
+autotune hall sector[0]
+autotune hall sector[1]
+autotune hall sector[2]
+autotune hall sector[3]
+autotune hall sector[4]
+autotune hall sector[5]
+autotune hall sector[6]
+autotune hall sector[7]
+Open loop modulation
+SMT Serial Number
+Open circuit voltage test window
+High/Lowside turn on voltage test window
+motor phase U high voltage POST
+motor phase U low voltage POST
+motor phase V high voltage POST
+motor phase V low voltage POST
+motor phase W high voltage POST
+motor phase W low voltage POST
+motor phase U open circuit voltage POST
+motor phase V open circuit voltage POST
+motor phase W open circuit voltage POST
+phase A current sensor offset
+phase C current sensor offset
+
+Rated motor power (Race mode PAS power)
+Rated motor power (Race mode Throttle power)
+Rated motor power (Street mode PAS power)
+Rated motor power (Street mode Throttle power)
+Rated motor power (Street mode Throttle power)
+communications configuration vector
+Version Number
+
+TPDO1 event time
+TPDO2 event time
+TPDO3 event time
+TPDO4 event time
+
+battery voltage
+motor input power
+battery current
+Remote maximum battery current limit
+Remote maximum regen battery current limitLevel 1 Features
+HW configuration vector
+Level 1 Features
+Dynamic Flash Write Interval (seconds)

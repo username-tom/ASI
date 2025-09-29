@@ -1,0 +1,4 @@
+Name,Address,Scale,Units
+Ref1 0-10000,1,1,
+Ref2 0-10000,2,1,
+Status Word,3,1,

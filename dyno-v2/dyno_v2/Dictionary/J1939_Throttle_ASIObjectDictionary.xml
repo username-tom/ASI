@@ -1,0 +1,1757 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<InternalAppEntity xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <SaveToFlashAddress>63</SaveToFlashAddress>
+    <WriteToFlashCommand>16383</WriteToFlashCommand>
+    <BootloadAddress>64</BootloadAddress>
+    <EnterBootloaderCommand>32762</EnterBootloaderCommand>
+    <ClearFaultsAddress>-1</ClearFaultsAddress>
+    <PointerTableAvailable>false</PointerTableAvailable>
+
+    <Dictionary_Parameters>
+        <ParameterDescription>
+            <AccessLevel>0</AccessLevel>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Version Number</Name>
+            <Description>1.0.XX</Description>
+        </ParameterDescription>
+        <ParameterDescription>
+            <AccessLevel>0</AccessLevel>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Build Date</Name>
+            <Description>2023-04-18</Description>
+        </ParameterDescription>
+        <ParameterDescription>
+            <AccessLevel>0</AccessLevel>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Last Editor</Name>
+            <Description>Nick Oudyk</Description>
+        </ParameterDescription>
+      </Dictionary_Parameters>
+
+    <Parameters>
+        
+       
+        
+        <!-- Runtime Parameters -->
+        <ParameterDescription>
+            <BitField />
+            <Address>0</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Number of Runtime Parameters</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Always 64 for Throttle</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>1</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Temperature</Name>
+            <Scale>1</Scale>
+            <Units>C</Units>
+            <Description>Sensor 1 temperature in degrees celsius</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Temperature</Name>
+            <Scale>1</Scale>
+            <Units>C</Units>
+            <Description>Sensor 2 temperature in degrees celsius</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Magnetic Sense Low Fault</string>
+                <string>Magnetic Sense High Fault</string>
+                <string>Undervoltage Fault</string>
+                <string>Overvoltage Fault</string>
+                <string>Low Angle Fault</string>
+                <string>High Angle Fault</string>
+                <string>Angle processing rate error</string>
+                <string>Not in run mode</string>
+                <string>SPI CRC Error</string>
+                <string>SPI Interface Error</string>
+                <string>Extended Memory access error</string>
+                <string>Extended error in other error register</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>3</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Error</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Magnetic Sense Low Fault
+                bit  1: Magnetic Sense High Fault
+                bit  2: Undervoltage Fault
+                bit  3: Overvoltage Fault
+                bit  4: Low Angle Fault
+                bit  5: High Angle Fault
+                bit  6: Angle processing rate error
+                bit  7: Not in run mode
+                bit  8: SPI CRC Error
+                bit  9: SPI Interface Error
+                bit 10: Extended Memory access error
+                bit 11: Extended error in other error register
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <BitField>
+                <string>Magnetic Sense Low Fault</string>
+                <string>Magnetic Sense High Fault</string>
+                <string>Undervoltage Fault</string>
+                <string>Overvoltage Fault</string>
+                <string>Low Angle Fault</string>
+                <string>High Angle Fault</string>
+                <string>Angle processing rate error</string>
+                <string>Not in run mode</string>
+                <string>SPI CRC Error</string>
+                <string>SPI Interface Error</string>
+                <string>Extended Memory access error</string>
+                <string>Extended error in other error register</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>4</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Error</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Magnetic Sense Low Fault
+                bit  1: Magnetic Sense High Fault
+                bit  2: Undervoltage Fault
+                bit  3: Overvoltage Fault
+                bit  4: Low Angle Fault
+                bit  5: High Angle Fault
+                bit  6: Angle processing rate error
+                bit  7: Not in run mode
+                bit  8: SPI CRC Error
+                bit  9: SPI Interface Error
+                bit 10: Extended Memory access error
+                bit 11: Extended error in other error register
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>5</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Raw Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Value of Throttle Sensor 1 Output (0 to 4095).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>6</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Raw Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Value of Throttle Sensor 2 Output (0 to 4095).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>7</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Reserved_007</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Reserved for future use.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>8</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Reserved_008</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Reserved for future use.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>9</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Raw Field Strength</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Magnetic field strength for sensor 1 (Faults below 275).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>10</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Raw Field Strength</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Magnetic field strength for sensor 2 (Faults below 275).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>11</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Device Angle</Name>
+            <Scale>10</Scale>
+            <Units>degrees</Units>
+            <Description>Device Angle of Sensor 1 before user co-ordinate translation.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>12</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Device Angle</Name>
+            <Scale>10</Scale>
+            <Units>degrees</Units>
+            <Description>Device Angle of Sensor 2 before user co-ordinate translation.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Self test failure</string>
+                <string>Memory address failure</string>
+                <string>Execution Failure</string>
+                <string>Reset condition Flag</string>
+                <string>Watchdog timer fault</string>
+                <string>Watchdog processor halted</string>
+                <string>EEPROM Hard Error</string>
+                <string>SRAM Hard Error</string>
+                <string>Temperature sensor error</string>
+                <string>Angle Warning</string>
+                <string>EEPROM Soft Error</string>
+                <string>SRAM Soft Error</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>13</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Extended Error</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Self test failure
+                bit  1: Memory address failure
+                bit  2: Execution Failure
+                bit  3: Reset condition Flag
+                bit  4: Watchdog timer fault
+                bit  5: Watchdog processor halted
+                bit  6: EEPROM Hard Error
+                bit  7: SRAM Hard Error
+                bit  8: Temperature sensor error
+                bit  9: Angle Warning
+                bit 10: EEPROM Soft Error
+                bit 11: SRAM Soft Error
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Self test failure</string>
+                <string>Memory address failure</string>
+                <string>Execution Failure</string>
+                <string>Reset condition Flag</string>
+                <string>Watchdog timer fault</string>
+                <string>Watchdog processor halted</string>
+                <string>EEPROM Hard Error</string>
+                <string>SRAM Hard Error</string>
+                <string>Temperature sensor error</string>
+                <string>Angle Warning</string>
+                <string>EEPROM Soft Error</string>
+                <string>SRAM Soft Error</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>14</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Extended Error</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Self test failure
+                bit  1: Memory address failure
+                bit  2: Execution Failure
+                bit  3: Reset condition Flag
+                bit  4: Watchdog timer fault
+                bit  5: Watchdog processor halted
+                bit  6: EEPROM Hard Error
+                bit  7: SRAM Hard Error
+                bit  8: Temperature sensor error
+                bit  9: Angle Warning
+                bit 10: EEPROM Soft Error
+                bit 11: SRAM Soft Error
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>15</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Watchdog Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Value which changes when angle update is available.</Description>
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>16</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Watchdog Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Value which changes when angle update is available.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>17</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 Status</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>
+                Bit 0 – 3: Operating phase
+                    0 = idle
+                    1 = processing angles
+                    4 = Self test
+                    6 = ROM checksum
+                    7 = CVH Selft test
+                Bit 4-7: Processor Processing Status
+                    0 = Booting
+                    1 = Booted
+                    14 = Self Test mode
+                Bit 8: Current Error Flag
+                    0 = No error
+                    1 = error
+                Bit 9: New Angle Flag
+                    0 = No unread angle
+                    1 = Unread angle available
+                Bit 10: Soft Reset Flag
+                    0 = No software reset
+                    1 = software reset occurred
+                Bit 11: Power-On Reset
+                    0 = No pwr reset since software reset
+                    1 = pwr reset occurred
+                Bits 12-15: Reserved for future use
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>18</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 Status</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>
+                Bit 0 – 3: Operating phase
+                    0 = idle
+                    1 = processing angles
+                    4 = Self test
+                    6 = ROM checksum
+                    7 = CVH Selft test
+                Bit 4-7: Processor Processing Status
+                    0 = Booting
+                    1 = Booted
+                    14 = Self Test mode
+                Bit 8: Current Error Flag
+                    0 = No error
+                    1 = error
+                Bit 9: New Angle Flag
+                    0 = No unread angle
+                    1 = Unread angle available
+                Bit 10: Soft Reset Flag
+                    0 = No software reset
+                    1 = software reset occurred
+                Bit 11: Power-On Reset
+                    0 = No pwr reset since software reset
+                    1 = pwr reset occurred
+                Bits 12-15: Reserved for future use
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>21</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>PCB Voltage 3v3 Rail</Name>
+            <Scale>100</Scale>
+            <Units>V</Units>
+            <Description>Measured voltage on 3v3 Rail</Description>          
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>22</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>PCB Voltage 5v0 Rail</Name>
+            <Scale>100</Scale>
+            <Units>V</Units>
+            <Description>Measured voltage on 5v0 Rail</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>23</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>PCB Voltage Input Voltage Rail</Name>
+            <Scale>100</Scale>
+            <Units>V</Units>
+            <Description>Measured voltage on Input Rail</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>24</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>PCB Temperature</Name>
+            <Scale>1</Scale>
+            <Units>C</Units>
+            <Description>Measured PCB temperature</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>25</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>MCU Temperature</Name>
+            <Scale>1</Scale>
+            <Units>C</Units>
+            <Description>Measured MCU temperature (internal)</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>26</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>MCU Voltage Reference</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Measured MCU Voltage Reference (used in MCU Voltage and Temperature calculations)</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>27</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>MCU Voltage Battery</Name>
+            <Scale>1000</Scale>
+            <Units>V</Units>
+            <Description>Measured battery pin voltage on MCU</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Low Magnetic Field</string>
+                <string>Travel out of calibrated range</string>
+                <string>Redundant sensor mismatch</string>
+                <string>Sensor 1 Error</string>
+                <string>Sensor 2 Error</string>
+                <string>Sensor 1 SPI Comm. Error</string>
+                <string>Sensor 2 SPI Comm. Error</string>
+                <string>Advanced Fault Flag (Higher bit faults1 or faults2 bits are set)</string>
+                <string>Self Test Fault</string>
+                <string>Flash CRC Fault</string>
+                <string>ISR Overrun</string>
+                <string>CAN Receive Fault</string>
+                <string>CAN Transmission Fault</string>
+                <string>CAN Config Fault</string>
+                <string>Flash Read Fault</string>
+                <string>Advanced Fault Flag (Bit is set on Faults2)</string>
+            </BitField>
+            <Address>28</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Throttle Faults1</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Low Magnetic Field
+                bit  1: Travel out of calibrated range
+                bit  2: Redundant sensor mismatch
+                bit  3: Sensor 1 Error
+                bit  4: Sensor 2 Error
+                bit  5: Sensor 1 SPI Comm. Error
+                bit  6: Sensor 2 SPI Comm. Error
+                bit  7: Advanced Fault Flag (Higher bit faults1 or faults2 bits are set)
+                bit  8: Self Test Fault
+                bit  9: Flash CRC Fault
+                bit 10: ISR Overrun
+                bit 11: CAN Receive Fault
+                bit 12: CAN Transmission Fault
+                bit 13: CAN Config Fault
+                bit 14: Flash Read Fault
+                bit 15: Advanced Fault Flag (Bit is set on Faults2
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Logic Fault</string>
+                <string>Range Configuration Fault</string>
+                <string>Non-operational mode enabled</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>29</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Throttle Faults2</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Logic Fault
+                bit  1: Range Configuration Fault
+                bit  2: Non-operational mode enabled
+                bit  3: Reserved
+                bit  4: Reserved
+                bit  5: Reserved
+                bit  6: Reserved
+                bit  7: Reserved
+                bit  8: Reserved
+                bit  9: Reserved
+                bit 10: Reserved
+                bit 11: Reserved
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>30</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Throttle Faults3</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Reserved
+                bit  1: Reserved
+                bit  2: Reserved
+                bit  3: Reserved
+                bit  4: Reserved
+                bit  5: Reserved
+                bit  6: Reserved
+                bit  7: Reserved
+                bit  8: Reserved
+                bit  9: Reserved
+                bit 10: Reserved
+                bit 11: Reserved
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>31</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Throttle Faults4</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Reserved
+                bit  1: Reserved
+                bit  2: Reserved
+                bit  3: Reserved
+                bit  4: Reserved
+                bit  5: Reserved
+                bit  6: Reserved
+                bit  7: Reserved
+                bit  8: Reserved
+                bit  9: Reserved
+                bit 10: Reserved
+                bit 11: Reserved
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>32</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 1 User Raw Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Value of Throttle Sensor 1 Output after translated to user co-ordinate space (0 to 4095).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>33</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Sensor 2 User Raw Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw Value of Throttle Sensor 2 Output after translated to user co-ordinate space. Should be within 64 of Sensor 1 User Raw Value (0 to 4095).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>34</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Watchdog Value</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Value which changes when both sensors have an angle update available.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField>
+            </BitField>
+            <Address>35</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Temperature</Name>
+            <Scale>1</Scale>
+            <Units>C</Units>
+            <Description>Reports the highest temperature among all temperature readings</Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>36</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Angle</Name>
+            <Scale>10</Scale>
+            <Units>degrees</Units>
+            <Description>Calculated Sensor Angle after user co-ordinate translation.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>37</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Output</Name>
+            <Scale>40.96</Scale>
+            <Units>%</Units>
+            <Description>Calculated Throttle Command Output (-100% to +100%) based on configured calibration.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>38</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Reverse Maximum Boundary Start</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the reverse fault range and reverse full range deadband.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>39</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Reverse Maximum Boundary End</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the reverse full range deadband and reverse slope.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>40</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Neutral Boundary Start</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the reverse slope range and neutral deadband.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>41</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Neutral Boundary End</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the neutral deadband and forward slope.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>42</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Forward Maximum Boundary Start</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the forward slope and forward full range deadband.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>43</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>User Forward Maximum Boundary End</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Raw value which marks the transition point between the forward full range deadband and forward fault range.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>44</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Firmware Version - Major</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Number representing the "Major" section in semantic versioning. Usually indicates breaking change when incremented.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>45</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Firmware Version - Minor</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Number representing the "Minor" section in semantic versioning. Usually indicates a new feature when incremented.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>46</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Firmware Version - Patch</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Number representing the "Patch" section in semantic versioning. Usually indicates a bug fix when incremented.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>47</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Firmware Version - Build</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Number representing the "Build" section in semantic versioning. Usually incremented every repository change.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>48</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Software Repository Hash - Low Bytes</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>Git Repository Commit Identifier - Low Bytes.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>49</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Software Repository Hash - High Bytes</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>Git Repository Commit Identifier - High Bytes.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>50</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Software Repository Status</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>0 = no uncommitted changes. 1 = uncommitted changes present in compiled build.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>59</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Bootloader Version</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Value indicating version of installed bootloader.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>60</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>User Flash Read Password Input</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Password input for unlocking read access to Flash Parameters. Must match flash read password to grant flash parameter read/write access.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>61</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>User Flash Write Password Input</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Password input for unlocking write access to Flash Parameters. Must match flash write password to grant flash parameter write access.</Description>
+        </ParameterDescription>
+                
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>62</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Special Commands</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>0x1FFF to reset MCU. 0x2FFF to clear faults. 0x3FFF to enter non-operational mode, write any other value to exit non-operational mode</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>63</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Flash Commands</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>0x3FFF to save to flash, 0x4FFF to lock OTP. 0x1000/0x1001 means success for flash/otp lock. 0x2000/0x2001 means failure for flash/otp lock.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>64</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Run Bootload Command</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>0x7FFA to jump to bootloader.</Description>
+        </ParameterDescription>
+        
+        
+        
+        <!-- Flash Parameters -->
+        <ParameterDescription>
+            <BitField />
+            <Address>256</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Number of available Flash Parameters</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Set to 21 (0x15).  Could be expanded in the future.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>257</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>CAN baud rate</Name>
+            <Scale>1</Scale>
+            <Units>kbps</Units>
+            <Description>CAN baud rate in kbps - Currently unused for J1939, hardcoded to 500kbps</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>258</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>CAN Node ID</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description> CAN ID - Currently unused for J1939. J1939 Address is defined to be 0xB0 + offset due to inputs/address claim.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>259</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Reserved_259</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Reserved for future use.</Description>
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>260</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Broadcast 1 Interval Time</Name>
+            <Scale>1</Scale>
+            <Units>ms</Units>
+            <Description> Interval time for broadcast 1 (PGN 65281).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>261</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Broadcast 2 Interval Time</Name>
+            <Scale>1</Scale>
+            <Units>ms</Units>
+            <Description> Interval time for broadcast 2 (PGN 65282).</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>262</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Reserved_262</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Reserved for future use.</Description>
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>263</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Reserved_263</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Reserved for future use.</Description>
+        </ParameterDescription>
+
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>264</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Throttle Mode</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>0 = Single Sided, 1 = Bi-directional (Default)</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>265</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Full Reverse</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the value of "Sensor 1 raw reading" transmitted in bytes 0/1 of PGN 65282 with the throttle moved fully to the reverse position.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>266</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Neutral</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the value of "Sensor 1 raw reading" transmitted in bytes 0/1 of PGN 65282 with the throttle in the middle of the neutral position.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>267</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Full Forward</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the value of "Sensor 1 raw reading" transmitted in bytes 0/1 of PGN 65282 with the throttle moved fully to the forward position.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>268</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Reverse Deadband Width</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the width of the desired reverse maximum deadband in terms of "Sensor 1 raw reading" value differences.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>269</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Neutral Deadband Width</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the width of the desired neutral deadband in terms of "Sensor 1 raw reading" value differences.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>270</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Forward Deadband Width</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the width of the desired forward maximum deadband in terms of "Sensor 1 raw reading" value differences.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>271</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Zero-Angle Raw Offset</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Offset Calibration Value, perform before range calibration - Set to 180 degrees minus the angle reading (bytes 4/5 of PGN 65281, with a scaling of 10) at dead neutral. If negative, add 360 degrees to wraparound. Scale result to raw offset by multiplying by 4096/360, or 11.377777.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField>
+                <string>Positive Rotation Direction</string>
+                <string>Negative Angle Offset</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+                <string>Reserved</string>
+            </BitField>
+            <Address>272</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Absolute Calibration Feature Bits</Name>
+            <Scale>bit vector</Scale>
+            <Units></Units>
+            <Description>
+                15 14 13 12 11 10  9  8  7  6  5  4  3  2  1  0
+
+                1=active 0=not active
+
+                bit  0: Positive Rotation Direction - Specifies how positive rotation (increase angle from calibrated 0) is defined (0=anti-clockwise, 1=clockwise)
+                bit  1: Negative Angle Offset - Specifies the offset direction (0=anti-clockwise, 1=clockwise)
+                bit  2: Reserved
+                bit  3: Reserved
+                bit  4: Reserved
+                bit  5: Reserved
+                bit  6: Reserved
+                bit  7: Reserved
+                bit  8: Reserved
+                bit  9: Reserved
+                bit 10: Reserved
+                bit 11: Reserved
+                bit 12: Reserved
+                bit 13: Reserved
+                bit 14: Reserved
+                bit 15: Reserved
+            </Description>          
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>273</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Reverse Deadband Offset</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the desired offset for the reverse deadband compared to the "Full Reverse" calibration. Default is '0', indicating the deadband is centered around the "Full Reverse" point.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>274</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Neutral Deadband Offset</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the desired offset for the neutral deadband compared to the "Neutral" calibration. Default is '0', indicating the deadband is centered around the "Neutral" point.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField/>
+            <Address>275</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Calibrated Forward Deadband Offset</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Range Calibration Value, perform after offset calibration - Set to the desired offset for the forward deadband compared to the "Full Forward" calibration. Default is '0', indicating the deadband is centered around the "Full Forward" point.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>276</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Flash Parameter Read Password</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>Saved 16-bit hex password for reading/writing flash parameters. Prevents reading/writing flash parameters when value doesn't match "User Flash Read Password Input".</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>277</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Flash Parameter Write Password</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>Saved 16-bit hex password for writing flash parameters. Prevents writing flash parameters (and reading this parameter) when value doesn't match "User Flash Write Password Input".</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>278</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 0 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2016.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>279</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 1 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2017.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>280</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 2 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2018.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>281</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 3 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2019.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>282</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 4 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2020.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>283</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 5 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2021.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>284</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 6 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2022.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>285</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 7 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2023.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>286</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 8 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2024.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>287</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 9 - Flash</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 2025.</Description>
+        </ParameterDescription>
+        
+        <!-- OTP Parameters -->
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>512</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>Number of available OTP Parameters</Name>
+            <Scale>1</Scale>
+            <Units></Units>
+            <Description>Set to 11 (0x0b). 10 OTP parameters, and one "lock status" parameter.  Could be expanded in the future.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>513</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 1</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>514</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 2</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>515</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 3</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>516</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 4</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>517</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 5</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>518</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 6</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>519</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 7</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>520</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 8</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>521</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 9</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>522</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>OTP Parameter 10</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>523</Address>
+            <Read>true</Read>
+            <Write>false</Write>
+            <Name>OTP Block Lock Status</Name>
+            <Scale>hex</Scale>
+            <Units></Units>
+            <Description>16-bit value, one-time writeable. 0xFFFF prior to being set.</Description>
+        </ParameterDescription>
+        
+        <!-- Customer Parameters -->
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2016</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 0</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 278.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2017</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 1</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 279.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2018</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 2</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 280.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2019</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 3</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 281.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2020</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 4</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 282.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2021</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 5</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 283.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2022</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 6</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 284.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2023</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 7</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 285.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2024</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 8</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 286.</Description>
+        </ParameterDescription>
+        
+        <ParameterDescription>
+            <Flash>true</Flash>
+            <BitField />
+            <AccessLevel>0</AccessLevel>
+            <Address>2025</Address>
+            <Read>true</Read>
+            <Write>true</Write>
+            <Name>Customer Custom Value 9</Name>
+            <Scale>hex</Scale>
+            <Units />
+            <Description>Custom Value for customer to store values they may want or need. Can also be accessed at parameter 287.</Description>
+        </ParameterDescription>
+        
+    </Parameters>
+</InternalAppEntity>

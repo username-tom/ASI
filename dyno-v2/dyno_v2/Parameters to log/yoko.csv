@@ -1,0 +1,33 @@
+Name,Units,Field,Element,Index
+Motor Speed,rpm,speed,1,1
+Torque,Nm,torque,1,2
+DC Voltage,V,UDC,4,3
+DC Current,A,IDC,4,4
+Phase RMS Current 1,A,IRMS,1,5
+Phase RMS Current 2,A,IRMS,2,6
+Phase RMS Current 3,A,IRMS,3,7
+Phase RMS Current Average,A,IRMS,5,8
+Phase RMS Voltage 1,V,URMS,1,9
+Phase RMS Voltage 2,V,URMS,2,10
+Phase RMS Voltage 3,V,URMS,3,11
+Phase RMS Voltage Average,V,URMS,5,12
+Electrical Power,W,P,4,13
+Mechanical Power,W,PM,1,14
+Controller Efficiency,%,ETA1,1,15
+Motor Efficiency,%,ETA2,1,16
+System Efficiency,%,ETA3,1,17
+Phase Real Power 1,W,P,1,18
+Phase Real Power 2,W,P,2,19
+Phase Real Power 3,W,P,3,20
+Phase Imaginary Power 1,Vars,Q,1,21
+Phase Imaginary Power 2,Vars,Q,2,22
+Phase Imaginary Power 3,Vars,Q,3,23
+Phase Total Power 1,VA,S,1,24
+Phase Total Power 2,VA,S,2,25
+Phase Total Power 3,VA,S,3,26
+PF 1,%,LAMBda,1,27
+PF 2,%,LAMBda,2,28
+PF 3,%,LAMBda,3,29
+Phase Advance 1,deg,PHI,1,30
+Phase Advance 2,deg,PHI,2,31
+Phase Advance 3,deg,PHI,3,32

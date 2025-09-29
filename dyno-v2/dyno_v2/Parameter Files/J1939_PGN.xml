@@ -1,0 +1,1067 @@
+<J1939_PGN>
+    <ParameterGroup>
+        <Parameter>
+            <ParameterGroupNumber>60928</ParameterGroupNumber>
+            <Label>Address Claimed Message</Label>
+            <Acronym>ACM</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>2848</SuspectParameterNumber>
+                    <SuspectParameterLabel>NAME</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>64</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>NAME of CA</SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Address Claimed Message from J1939-81
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55552</ParameterGroupNumber>
+            <Label>Memory Access Request</Label>
+            <Acronym>DM14</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1640</SuspectParameterNumber>
+                    <SuspectParameterLabel>Number of Requests</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>11</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>892</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>Length/Number of Read or Write Requests</SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1641</SuspectParameterNumber>
+                    <SuspectParameterLabel>Pointer Type</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>1</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>Length/Number of Read or Write Requests</SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1642</SuspectParameterNumber>
+                    <SuspectParameterLabel>Command</SuspectParameterLabel>
+                    <Start>2-2</Start>
+                    <SuspectParameterLength>3</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>5</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        1 - Read
+                        2 - Write
+                        3 - Status
+                        4 - Operation Complete
+                        5 - Operation Failed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>0</SuspectParameterNumber>
+                    <SuspectParameterLabel>Unused - SAE Reserved</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>1</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>1</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Always 1
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1644</SuspectParameterNumber>
+                    <SuspectParameterLabel>Pointer</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>24</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>2304</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>ASI Modbus Address</SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1643</SuspectParameterNumber>
+                    <SuspectParameterLabel>Pointer Extension</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0x81 is the required value to indicate pointer is indicating modbus parameter index
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1645</SuspectParameterNumber>
+                    <SuspectParameterLabel>Key/User Level</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Currently not used. 0xFFFF is the default value. May be available in the future.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Memory Access Request PGN for Read/Write specific parameters for the device
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55296</ParameterGroupNumber>
+            <Label>Memory Access Response</Label>
+            <Acronym>DM15</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1649</SuspectParameterNumber>
+                    <SuspectParameterLabel>Number of Requests Allowed</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>11</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>892</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Length/Number of Read or Write Requests the device is allowing
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>0</SuspectParameterNumber>
+                    <SuspectParameterLabel>Unused - SAE Reserved</SuspectParameterLabel>
+                    <Start>2-5</Start>
+                    <SuspectParameterLength>3</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>1</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Always 1
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1646</SuspectParameterNumber>
+                    <SuspectParameterLabel>Status</SuspectParameterLabel>
+                    <Start>2-2</Start>
+                    <SuspectParameterLength>3</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>1</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0 - Proceed
+                        1 - Busy
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>0</SuspectParameterNumber>
+                    <SuspectParameterLabel>Unused - SAE Reserved - 1</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>3</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>1</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Always 1
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1644</SuspectParameterNumber>
+                    <SuspectParameterLabel>Error Indicator/EDC Value</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>24</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>0</Minimum>
+                    <Maximum>258</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0 - No error
+                        1 - Unspecified/Unknown error
+                        2 - Busy/Cannot perform right now
+                        257 - Issue with parameter pointer to by SPN 1644
+                        258 - Issue with SPN 1640 (Length/Number of Requests)
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1643</SuspectParameterNumber>
+                    <SuspectParameterLabel>EDCP Extension</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        6 - SPN 1644 (previous field) is for an error indicator
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber>1645</SuspectParameterNumber>
+                    <SuspectParameterLabel>Seed</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Currently not used. 0xFFFF is the default value. May be available in the future.
+                    </SuspectParameterDescription>
+               </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Memory Access Response PGN for Read/Write specific parameters for the device
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55040</ParameterGroupNumber>
+            <Label>Binary Data Transfer</Label>
+            <Acronym>BDT</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>6</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Number of Raw bytes of valid data</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum>1</Minimum>
+                    <Maximum>7</Maximum>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Number of Raw bytes of valid data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 1</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 1 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 2</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 2 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 3</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 3 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 4</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 4 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 5</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 5 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 6</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 6 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 7</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 7 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Binary Data Transfer PGN for Read/Write specific parameters for the device. Can be multipacket
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55040</ParameterGroupNumber>
+            <Label>Binary Data Transfer - First Packet</Label>
+            <Acronym>BDT1P</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>True</Multipacket>
+            <Length>8</Length>
+            <Priority>7</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Sequence Number</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Sequential Number for multi-packet data transfers
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Multi-packet Indicator</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0xFF - Indicates multi-packet data transfer
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 1</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 1 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 2</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 2 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 3</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 3 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 4</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 4 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 5</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 5 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 6</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 6 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Binary Data Transfer PGN for Read/Write specific parameters for the device. 1st of the multi-packet data transfer
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55040</ParameterGroupNumber>
+            <Label>Binary Data Transfer - Middle Packet</Label>
+            <Acronym>BDTMP</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>True</Multipacket>
+            <Length>8</Length>
+            <Priority>7</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Sequence Number</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Sequential Number for multi-packet data transfers
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 1</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 1 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 2</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 2 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 3</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 3 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 4</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 4 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 5</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 5 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 6</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 6 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 7</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 7 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Binary Data Transfer PGN for Read/Write specific parameters for the device. Middle packets for multi-packet data transfer
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>55040</ParameterGroupNumber>
+            <Label>Binary Data Transfer - Final Packet</Label>
+            <Acronym>BDTFP</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>True</Multipacket>
+            <Length>8</Length>
+            <Priority>7</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Sequence Number</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Sequential Number for multi-packet data transfers
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Number of Raw Occurrences</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Number of Raw Occurrences
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 1</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 1 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 2</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 2 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 3</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 3 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 4</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 4 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 5</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 5 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 6</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 6 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Binary Data Transfer PGN for Read/Write specific parameters for the device. Last packet for multi-packet data transfer
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>60416</ParameterGroupNumber>
+            <Label>Transport Protocol - Connection Management</Label>
+            <Acronym>TP.CM</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>False</Multipacket>
+            <Length>8</Length>
+            <Priority>7</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Control byte</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0 to 15, 18, 20 to 31, and 33 to 254 are Reserved for SAE Assignment
+                        16, Destination Specific Request_To_Send (RTS)
+                        17, Destination Specific Clear_To_Send (CTS)
+                        19, End_of_Message Acknowledge
+                        32, Broadcast Announce Message
+                        255, Connection Abort
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Total Message Size, number of bytes</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>16</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        9 to 1785 (2 bytes), zero to 8 and 1786 to 65535 not allowed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Total Number of Packets</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        2 to 255 (1 byte), zero not allowed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Maximum Number of Packets</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        2 to 255 (1 byte), zero and one are not allowed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Number of Packets that can be sent</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        0 to 255 (1 byte)
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Next Packet Number to be Sent</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        1 to 255 (1 byte), zero not allowed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Sequence Number</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        1 to 255 (1 byte), zero not allowed
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Used for the transfer of PGs that have 9 or more bytes of data.
+            </Description>
+        </Parameter>
+        <Parameter>
+            <ParameterGroupNumber>60160</ParameterGroupNumber>
+            <Label>Transport Protocol - Data Transfer</Label>
+            <Acronym>TP.DT</Acronym>
+            <Rate>0</Rate>
+            <Multipacket>True</Multipacket>
+            <Length>8</Length>
+            <Priority>7</Priority>
+            <SuspectParameterGroup>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Sequence Number</SuspectParameterLabel>
+                    <Start>1-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Sequential Number for multi-packet data transfers
+                        1 to 255 (1 byte)
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 1</SuspectParameterLabel>
+                    <Start>2-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 1 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 2</SuspectParameterLabel>
+                    <Start>3-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 2 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 3</SuspectParameterLabel>
+                    <Start>4-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 3 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 4</SuspectParameterLabel>
+                    <Start>5-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 4 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 5</SuspectParameterLabel>
+                    <Start>6-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 5 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 6</SuspectParameterLabel>
+                    <Start>7-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 6 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+                <SuspectParameter>
+                    <SuspectParameterNumber/>
+                    <SuspectParameterLabel>Raw Byte Data 7</SuspectParameterLabel>
+                    <Start>8-1</Start>
+                    <SuspectParameterLength>8</SuspectParameterLength>
+                    <Scale>1</Scale>
+                    <Offset>0</Offset>
+                    <Unit/>
+                    <Minimum/>
+                    <Maximum/>
+                    <ASIParameter/>
+                    <SuspectParameterDescription>
+                        Byte 7 of data
+                    </SuspectParameterDescription>
+                </SuspectParameter>
+            </SuspectParameterGroup>
+            <Description>
+                Used for the transfer of PGs that have 9 or more bytes of data.
+            </Description>
+        </Parameter>
+    </ParameterGroup>
+</J1939_PGN>

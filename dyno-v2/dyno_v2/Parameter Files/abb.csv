@@ -1,0 +1,19 @@
+Name,Address,Scale,Units,Manul,Auto
+EXT1 Start/Stop/Dir,1000,1,,2,10
+EXT2 Start/Stop/Dir,1001,1,,7,10
+Keypad Speed or Torque,1100,1,,2,2
+Torque signal source,1101,1,,9,9
+External Speed signal source,1102,1,,3,20
+External Torque signal source,1105,1,,3,20
+Run command signal source,1600,1,,1,8
+Control Word,0,1,,,
+Ref1,1,1,,,
+Ref2,2,1,,,
+Status Word,3,1,,,
+Act1,4,1,,,
+Act2,5,1,,,
+Comms Fault Handling,3017,1,,2,2
+Direction,1002,1,,3,3
+Fault Reset,1603,1,,1,8
+Minimal Speed,2000,1,,,
+Maximum Speed,2001,1,,,

@@ -1,0 +1,14 @@
+<Parameters>
+  <ABB>
+    <ParameterDescription>
+      <Name>Torque</Name>
+      <Units>%</Units>
+      <Description>% of maximum torque</Description>
+    </ParameterDescription>
+    <ParameterDescription>
+      <Name>Speed</Name>
+      <Units>RPM</Units>
+      <Description>Target RPM</Description>
+    </ParameterDescription>
+  </ABB>
+</Parameters>

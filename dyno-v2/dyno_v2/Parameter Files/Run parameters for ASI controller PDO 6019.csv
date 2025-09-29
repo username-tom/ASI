@@ -1,0 +1,92 @@
+Name
+
+communications configuration vector
+CAN heartbeat period
+
+RPDO1 COBID (low word)
+RPDO1 COBID (high word)
+RPDO2 COBID (low word)
+RPDO2 COBID (high word)
+
+TPDO1 COBID (low word)
+TPDO1 COBID (high word)
+TPDO2 COBID (low word)
+TPDO2 COBID (high word)
+TPDO3 COBID (low word)
+TPDO3 COBID (high word)
+TPDO4 COBID (low word)
+TPDO4 COBID (high word)
+
+RPDO1 map1 index
+RPDO1 map1 sub index and size
+RPDO1 map2 index
+RPDO1 map2 sub index and size
+RPDO1 map3 index
+RPDO1 map3 sub index and size
+RPDO1 map4 index
+RPDO1 map4 sub index and size
+RPDO2 map1 index
+RPDO2 map1 sub index and size
+RPDO2 map2 index
+RPDO2 map2 sub index and size
+RPDO2 map3 index
+RPDO2 map3 sub index and size
+RPDO2 map4 index
+RPDO2 map4 sub index and size
+
+TPDO1 map1 index
+TPDO1 map1 sub index and size
+TPDO1 map2 index
+TPDO1 map2 sub index and size
+TPDO1 map3 index
+TPDO1 map3 sub index and size
+TPDO1 map4 index
+TPDO1 map4 sub index and size
+TPDO2 map1 index
+TPDO2 map1 sub index and size
+TPDO2 map2 index
+TPDO2 map2 sub index and size
+TPDO2 map3 index
+TPDO2 map3 sub index and size
+TPDO2 map4 index
+TPDO2 map4 sub index and size
+TPDO3 map1 index
+TPDO3 map1 sub index and size
+TPDO3 map2 index
+TPDO3 map2 sub index and size
+TPDO3 map3 index
+TPDO3 map3 sub index and size
+TPDO3 map4 index
+TPDO3 map4 sub index and size
+TPDO4 map1 index
+TPDO4 map1 sub index and size
+TPDO4 map2 index
+TPDO4 map2 sub index and size
+TPDO4 map3 index
+TPDO4 map3 sub index and size
+TPDO4 map4 index
+TPDO4 map4 sub index and size
+
+RPDO1 size (words)
+RPDO2 size (words)
+
+TPDO1 size (words)
+TPDO2 size (words)
+TPDO3 size (words)
+TPDO4 size (words)
+
+RPDO1 transmission type
+RPDO2 transmission type
+
+TPDO1 transmission type
+TPDO2 transmission type
+TPDO3 transmission type
+TPDO4 transmission type
+
+RPDO1 timeout
+RPDO2 timeout
+
+TPDO1 event time
+TPDO2 event time
+TPDO3 event time
+TPDO4 event time

@@ -1,0 +1,31 @@
+Name,Shortened Name,Channel,Units
+Motor Speed,speed,1,RPM
+Torque,torque,1,Nm
+DC Voltage,UDC,4,V
+DC Current,IDC,4,A
+Phase RMS Current 1,IRMS,1,A
+Phase RMS Current 2,IRMS,2,A
+Phase RMS Current 3,IRMS,3,A
+Phase RMS Voltage 1,URMS,1,V
+Phase RMS Voltage 2,URMS,2,V
+Phase RMS Voltage 3,URMS,3,V
+Electrical Power,P,4,W
+Mechanical Power,PM,1,W
+Controller Efficiency,ETA1,1,%
+Motor Efficiency,ETA2,1,%
+System Efficiency,ETA3,1,%
+Phase Real Power 1,P,1,W
+Phase Real Power 2,P,2,W
+Phase Real Power 3,P,3,W
+Phase Imaginary Power 1,Q,1,Vars
+Phase Imaginary Power 2,Q,2,Vars
+Phase Imaginary Power 3,Q,3,Vars
+Phase Total Power 1,S,1,VA
+Phase Total Power 2,S,2,VA
+Phase Total Power 3,S,3,VA
+PF 1,LAMBda,1,%
+PF 2,LAMBda,2,%
+PF 3,LAMBda,3,%
+Phase Advance 1,PHI,1,deg
+Phase Advance 2,PHI,2,deg
+Phase Advance 3,PHI,3,deg
