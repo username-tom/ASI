@@ -17,10 +17,7 @@ from threading import Thread
 
 
 def _com_ports():
-    ports = []
-    for port, desc, hwid in serial.tools.list_ports.comports():
-        ports.append(port)
-    return ports
+    return [port for port, _, _ in serial.tools.list_ports.comports()]
 
 
 def log_result(file_name="", data=None):
@@ -331,10 +328,10 @@ class TimberProductionTester:
 
             try:
                 self.dyno.__del__()
-                self.dyno = None
             except (ValueError, AttributeError, OSError):
                 pass
             finally:
+                self.dyno = None
                 self.status.set("DISCONNECTED")
 
     def _test_start(self):
@@ -698,13 +695,10 @@ class TimberProductionTester:
         self._test_stop()
 
     def _check_test_result(self):
-        if (self.output_result["Pre-test Motor Discovery"] == "Passed" and
+        return (self.output_result["Pre-test Motor Discovery"] == "Passed" and
                 self.output_result["Unloaded Run"] == "Passed" and
                 self.output_result['Rundown'] == "Passed" and
-                self.output_result['Post-test Motor Discovery'] == "Passed"):
-            return True
-        else:
-            return False
+                self.output_result['Post-test Motor Discovery'] == "Passed")
 
     def _add_note(self, text):
         self.test_note = f"{text}; {self.test_note}"
@@ -740,14 +734,10 @@ class TimberProductionTester:
         temp.join()
 
     def _reset_result(self):
-        self.result = []
-        for _ in log_header:
-            self.result.append("")
+        self.result = [""] * len(log_header)
 
     def _init_out(self):
-        self.output_result  = {}
-        for result in OUTPUT_RESULTS:
-            self.output_result[result] = OUTPUT_RESULTS[result]
+        self.output_result = OUTPUT_RESULTS.copy()
         for i, result in enumerate(self.output_result):
             temp_container = Frame(self.out_frame, relief='flat', background='white',
                                    name=f'frame_{"_".join(result.lower().split(" "))}')

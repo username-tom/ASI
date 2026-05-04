@@ -27,9 +27,11 @@ class ToolTip(tk.Toplevel):
         refresh: float = 1.0,
         x_offset: int = +20,
         y_offset: int = +20,
-        parent_kwargs: dict = {"bg": "black", "padx": 1, "pady": 1},
+        parent_kwargs: dict = None,
         **message_kwargs,
     ):
+        if parent_kwargs is None:
+            parent_kwargs = {"bg": "black", "padx": 1, "pady": 1}
         """Create a ToolTip. Allows for `**kwargs` to be passed on both
             the parent frame and the ToolTip message
 
@@ -154,8 +156,8 @@ class ToolTip(tk.Toplevel):
             except TypeError:
                 # Intentionally do not check if msg is str, can be a list of str
                 self.msgVar.set(self.msg)
-            except:
-                raise (
+            except Exception:
+                raise Exception(
                     "Error: ToolTip `msg` must be a string or string returning "
                     + f"function instead `msg` of type {type(self.msg)} was input"
                 )

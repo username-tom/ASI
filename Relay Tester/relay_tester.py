@@ -31,10 +31,7 @@ class ASIStatusIndicator:
                                                  outline='', fill=f"{'green' if self.status else 'red'}")
 
     def update_status(self):
-        self.canvas.delete(self.indicator)
-        self.indicator = self.canvas.create_oval(self.padding, self.padding,
-                                                 self.size - self.padding, self.size - self.padding,
-                                                 outline='', fill=f"{'green' if self.status else 'red'}")
+        self.canvas.itemconfig(self.indicator, fill='green' if self.status else 'red')
 
 
 class RelayTester:
@@ -50,7 +47,7 @@ class RelayTester:
         self.root['background'] = 'white'
         default_font = font.nametofont('TkDefaultFont')
         default_font.config(size=FONT_SIZE)
-        self.status = StringVar(value=f"DISCONNECTED")
+        self.status = StringVar(value="DISCONNECTED")
         self.int_event = Event()
         self.relay_selected = [BooleanVar(value=True),
                                BooleanVar(value=False)]
@@ -64,6 +61,7 @@ class RelayTester:
         self.current_cycle = IntVar(value=0)
         self.duration = IntVar(value=1000)
         self.duration.trace('w', self._on_duration_change)
+        self._updating_derived = False
         self.test_stopping = False
         self.worker = None
         self.relay_device = None
@@ -116,8 +114,6 @@ class RelayTester:
         Label(mainframe, name="c_entry", textvariable=self.current_cycle,
               background='white', width=10, justify='left').grid(
             column=1, row=7, columnspan=4, sticky='w')
-        ToolTip(mainframe.children['cycle_label'],
-                msg="How long relay stays disconnected in a cycle", delay=0.5)
 
         Label(mainframe, name="duration_label", text="Total Duration", background='white').grid(
             column=0, row=8, sticky='e')
@@ -168,16 +164,26 @@ class RelayTester:
         self.indicator[1] = temp_widget
 
     def _on_cycle_change(self, *args):
+        if self._updating_derived:
+            return
         try:
+            self._updating_derived = True
             self.duration.set(int(self.cycles.get() * (self.on_interval.get() + self.off_interval.get())))
         except TclError:
             pass
+        finally:
+            self._updating_derived = False
 
     def _on_duration_change(self, *args):
+        if self._updating_derived:
+            return
         try:
+            self._updating_derived = True
             self.cycles.set(int(self.duration.get() / (self.on_interval.get() + self.off_interval.get())))
         except TclError:
             pass
+        finally:
+            self._updating_derived = False
 
     def relay_thread(self):
         while self.testing and self.current_cycle.get() < self.cycles.get():
@@ -231,10 +237,10 @@ class RelayTester:
 
             try:
                 self.relay_device.__del__()
-                self.relay_device = None
             except (ValueError, AttributeError, OSError):
                 pass
-            else:
+            finally:
+                self.relay_device = None
                 self.status.set("DISCONNECTED")
 
     def _reset_relay(self):

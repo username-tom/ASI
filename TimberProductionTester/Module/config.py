@@ -7,7 +7,7 @@ config.read('config.ini')
 DUT_COM_PORT = config.get('default', 'dut_com_port')
 BRK_COM_PORT = config.get('default', 'brk_com_port')
 SAVE_DESTINATION = config.get('default', 'save_destination')
-BACKUP_DESTINATION = f"C:\\\\Timber Production Result"
+BACKUP_DESTINATION = "C:\\Timber Production Result"
 # Max. Line reactor test duration in minutes if, for some reason, controller never hit foldback and nobody is there to stop the test
 TEST_DURATION = float(config.get('default', 'timeout'))  # minutes
 GEOMETRY = config.get('default', 'geometry')
