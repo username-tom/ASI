@@ -1,6 +1,5 @@
 import usb.core
 import usb.backend.libusb1
-from tkinter import messagebox
 
 VENDOR_ID = 0x0a07 # OnTrak Control Systems Inc. vendor ID
 
@@ -208,13 +207,13 @@ class OntrakRelay:
         self._write_to_adu(RELAY_PARAMETER[f'RESET_RELAY_K{port}'])
 
         if check:
-            return self.check_status(f'K{port}', '1')
+            return self.check_status(f'K{port}', '0')
 
     def close_relay(self, port=0, check=False):
         self._write_to_adu(RELAY_PARAMETER[f'SET_RELAY_K{port}'])
 
         if check:
-            return self.check_status(f'K{port}', '0')
+            return self.check_status(f'K{port}', '1')
 
     def set_relay(self, num: int, check=False):
         self._write_to_adu(f"{RELAY_PARAMETER['SET_RELAY_PREFIX']}{num}")

@@ -18,11 +18,8 @@ def count_log_files(folder):
     """Counts existing log files"""
 
     def extract_digits(filename):
-        s = ''
-        for char in filename:
-            if char.isdigit():
-                s += char
-        return int(s)
+        digits = ''.join(c for c in filename if c.isdigit())
+        return int(digits)
 
     try:
         logs = [extract_digits(f) for f in os.listdir(folder) if f.endswith('.log')]
@@ -214,9 +211,7 @@ def styling(mode):
     logging.info("Finished setting up styles")
 
 def _com_ports():
-    ports = []
-    for port, desc, hwid in serial.tools.list_ports.comports():
-        ports.append(port)
+    ports = [port for port, _, _ in serial.tools.list_ports.comports()]
     ports.append('CAN')
     return ports
 
@@ -238,17 +233,9 @@ def _param_value_handler(value, scale=None):
 def _equal_config_value(value, config_value):
     if pd.isna(value) and pd.isna(config_value):
         return True
-    elif pd.isna(value) and not pd.isna(config_value):
+    if pd.isna(value) or pd.isna(config_value):
         return False
-    elif not pd.isna(value) and pd.isna(config_value):
-        return False
-    elif not pd.isna(value) and not pd.isna(config_value):
-        if value == config_value:
-            return True
-        else:
-            return False
-
-    return False
+    return value == config_value
 
 
 class DynoConnector:
